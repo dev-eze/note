@@ -1,0 +1,1 @@
+TO_DAYS(NOW()) - TO_DAYS(Registered) <![CDATA[>=]]> 14 THEN FALSE
