@@ -1,0 +1,1 @@
+SELECT DATE_ADD(‘2008-05-15’, INTERVAL 10 DAY) as required_date;
