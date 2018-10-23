@@ -1,0 +1,31 @@
+#Div 내부의 모든 양식 요소 사용 중지
+
+jquery / javascript의 부모 div 이름 으로 양식의 모든 필드 (textarea / textfield / option / input / checkbox / submit 등)를 비활성화하는 방법
+
+1. 
+  <c:if test="#{condition eq true}">
+  $("#good_list").find(("input, select, button, textarea").prop("disabled", true);
+  </c:if>     
+
+
+2.
+
+:input 선택기와 부모 선택자를 사용
+$("#parent-selector :input").attr("disabled", true);
+
+jquery 1.6+의 경우 .attr() 대신 .prop() 를 사용 .prop() .
+
+$("#parent-selector :input").prop("disabled", true);
+또는
+$("#parent-selector :input").attr("disabled", "disabled");
+
+#응용
+function ToggleMenuButtons(Activate) {
+    if (Activate == true) {
+        $("#SelectorId :input[type='button']").prop("disabled", true);
+    } else {
+        $("#SelectorId :input[type='button']").removeProp("disabled");
+    }
+}
+
+
