@@ -1,0 +1,1 @@
+$("#Div").find("input, select, button, textarea").prop("disabled", true);
