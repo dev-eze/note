@@ -1,1 +1,29 @@
+#1
 $("#Div").find("input, select, button, textarea").prop("disabled", true);
+
+
+#2 ::before 이용 
+
+#container-etc1,
+#container-etc2,
+#container-etc3 {
+    position: relative;
+}
+
+#container-etc1.disabled::before,
+#container-etc2.disabled::before,
+#container-etc3.disabled::before {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.7);
+    content: '';
+}
+
+위 CSS설정을 적용하려면 아래와 같이 특정 조건일 경우 클래스명에 disabled를 추가해준다.
+<fieldset id="container-etc1" class="bx <c:if test='${isTrue}'>disabled</c:if>">
+
