@@ -1,0 +1,11 @@
+  private String getMessageMaping(Map<String, String> paramMap, String htmlText) {
+    if (paramMap == null) {
+      return htmlText;
+    }
+
+    Iterator<String> iterator = paramMap.keySet().iterator();
+    while (iterator.hasNext()) {
+      String key = iterator.next();
+      String value = paramMap.get(key);
+      htmlText = htmlText.replace("#" + key + "#", value);
+    }
