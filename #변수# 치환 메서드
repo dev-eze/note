@@ -9,3 +9,45 @@
       String value = paramMap.get(key);
       htmlText = htmlText.replace("#" + key + "#", value);
     }
+
+
+  public String messageMaping(Map<String, String> paramMap, String templatePath) {
+    try {
+      URL htmlUrl = getTemplateUrl(templatePath);
+      String htmlText = readFile(htmlUrl.getFile());
+      return getMessageMaping(paramMap, htmlText);
+    }
+    catch (Exception e) {
+      log.warn("[이메일 메시지 맵핑]-paramMap: {} / templatePath: {}", paramMap, templatePath, e);
+    }
+    return null;
+  }
+  
+    private URL getTemplateUrl(String templatePath) {
+    return this.getClass().getClassLoader().getResource(templatePath);
+  }
+
+  private String readFile(String path) throws IOException {
+    BufferedReader reader = null;
+    StringBuilder builder = new StringBuilder();
+    try {
+      reader = new BufferedReader(new InputStreamReader((new FileInputStream(new File(path))), "UTF-8"));
+      String line = null;
+      while ((line = reader.readLine()) != null) {
+        builder.append(line);
+      }
+    } catch (IOException ex) {
+      log.error("{}", ex, ex);
+      throw ex;
+    } finally {
+      if (reader != null) {
+        try {
+          reader.close();
+        } catch (IOException ex) {
+          log.error("{}", ex);
+        }
+      }
+    }
+
+    return builder.toString();
+  }
