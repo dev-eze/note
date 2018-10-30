@@ -16,7 +16,7 @@ $('input').val(); //input의 value값을 가져온다.
 
 - $(selector).html(content);
 
-- html() 메소드에 일치하는 HTML엘리먼틔 내용을 변경
+- html() 메소드에 일치하는 HTML엘리먼트 내용을 content로 변경
 
 ex)
 $('p').html("helloworld");
