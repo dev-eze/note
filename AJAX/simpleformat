@@ -1,0 +1,36 @@
+                    $.ajax({
+                        url: '/web/board/tempSave',
+                        type: 'POST',
+                        data: $("#frm").serialize(),
+                        success: function(result) {
+                            var jsonObj = $.parseJSON(result);
+                            if ("success" == jsonObj.code) {
+                                $.ajax({
+                                    url: "/web/board/save/" + $("#title").val(),
+                                    processData: false,
+                                    contentType: false,
+                                    type: 'POST',
+                                    success: function(result) {
+                                        var jsonObj = $.parseJSON(result);
+                                        if ("success" == jsonObj.code) {
+                                            alertify.alert("저장되었습니다", function() {
+                                                location.reload();
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                            else {
+                                alertify.alert("저장 중 에러가 발생하였습니다.");
+                            }
+                            return false;
+                        }
+                    });
+                    
+                    
+           @RequestMapping(value="board/save/{title}", produces="text/plain;charset=UTF-8")
+  @ResponseBody
+  public String save(@PathVariable("title") String title) throws Exception {
+    String rt = service.save(title);
+    return rt;
+  }
