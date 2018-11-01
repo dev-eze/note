@@ -1,0 +1,6 @@
+update table 
+<trim prefix="SET" suffixOverrides=",">
+  <if test="test != null">
+    test = #{},
+  </if>
+</trim>
