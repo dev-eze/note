@@ -2,16 +2,16 @@
 
 pojo기반의 프로젝트를 하던 중, 날짜정보를 형변환해서 이것저것 해보다 궁금했던 점을 찾아 적어 본다.
 SimpleDateFormat 으로 Date타입으로 형변환을 시도하던 중, 익셉션이 발생했다.
-util, sql를 구분하지 않고 import를 했기 때문.
 
-문득 둘의 차이가 궁금해졌다. 
-자바 8 부터는 이 둘을 지양하고 java.time 패키지 (joda기반)을 사용하는것을 선호한다.
+입력은 util의 Date클래스를 사용해서 처리하려고 하는데, 이 데이터를 사용해서 sql 질의를 생성하려고 하면 
+sql.Date클래스의 객체로 변환이 필요했다.
 
-# java.sql.Date
-sql.Date는 util.Date를 상속받는다. 
-jdbc를 사용하는 라이브러리의 메소드
+(자바 8 부터는 이 둘을 지양하고 java.time 패키지 (joda기반)을 사용하는것을 선호한다.)
 
-  
+아래는 util.date를 sql.date로 포맷하는 방법이다. 
+
+public class MainClass {
+
   public static void main(String[] args) {
     java.util.Date utilDate = new java.util.Date();
     java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -20,4 +20,7 @@ jdbc를 사용하는 라이브러리의 메소드
 
   }
 
+}
+utilDate:Fri Feb 02 12:55:46 PST 2007
+sqlDate:2007-02-02
 
