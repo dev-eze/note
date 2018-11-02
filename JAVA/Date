@@ -11,3 +11,13 @@ util, sql를 구분하지 않고 import를 했기 때문.
 sql.Date는 util.Date를 상속받는다. 
 jdbc를 사용하는 라이브러리의 메소드
 
+  
+  public static void main(String[] args) {
+    java.util.Date utilDate = new java.util.Date();
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+    System.out.println("utilDate:" + utilDate);
+    System.out.println("sqlDate:" + sqlDate);
+
+  }
+
+
