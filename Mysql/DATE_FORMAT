@@ -1,0 +1,1 @@
+DATE_FORMAT(now(), "%Y-%m-%d")
