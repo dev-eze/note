@@ -1,0 +1,12 @@
+BETWEEN a AND b에서 a와 b를 포함한(inclusive) 그 사이의 모든 값에 해당하는지 여부를 조건으로 한다.
+아래 두 질의는 동일하게 해석된다.
+
+SELECT *
+FROM contacts
+WHERE contact_id BETWEEN 100 AND 500;
+
+
+SELECT *
+FROM contacts
+WHERE contact_id >= 100
+AND contact_id <= 500;
