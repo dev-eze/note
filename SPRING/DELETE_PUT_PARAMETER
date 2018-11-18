@@ -1,0 +1,39 @@
+delete/put 파라미터 받는법
+
+친구가 아래와 같이 삭제 요청을 하다
+서버쪽에서 데이터를 받아오려고하는대 계속 null값이 받아진다고 하였다.
+답변을 해주면서 정리를 해본다.
+
+친구가 스프링 환경/톰캣을 사용해서 RESTFUL한 API를 개발하다 서버쪽에서 데이터가 null이 받아진다고 하였다.
+URL에 데이터정보를 넘겨 GET방식처럼 동일하게 처리하면 되지만, 친구는 RequestBody에 바인딩해서 가지고 오고싶다고 고집을 부렸다. ^^
+아래는 관련 ajax api 정보이다.
+
+$.ajax({
+            url : "/board/delete",
+            type : "DELETE",
+            dataType: "html",
+            cache : false,
+            data : {
+                     "boardSeq":boardSeq
+                   }
+        }).done(function(result) {
+                 alert('삭제성공');
+        });
+            
+@ResponseBody
+@RequestMapping(value="/delete", method= RequestMethod.DELETE)
+public String boardDelete(HttpServletRequest request, HttpServletResponse response, Authentication authentication , @RequestParam String boardSeq) throws Exception {
+        
+  System.out.println(boardSeq); // null
+        
+  return "";
+        
+}            
+
+그러면 왜 바인딩이 안되는 것인가. 
+톰캣은 본디 POST요청일 뗴 파라미터 정보를 RequestBody에 서 파싱하기 떄문이다. 
+따라서 톰캣 서버 설정 server.xml에 아래와 같은 설정문구를 추가해주면 된다. 
+parseBodyMethods="POST,PUT,DELETE,PATCH"
+
+
+<Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" parseBodyMethods="POST,PUT,DELETE,PATCH"/>
