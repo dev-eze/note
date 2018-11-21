@@ -1,0 +1,5 @@
+
+You are attempting to change your source code while the program (or IntelliJ's debugger) is still running. 
+This is what the HotSwap feature does according to IntelliJ's KB.
+
+Please make sure your program and/or debugger is stopped before re-launching the program and the issue should be resolved.
