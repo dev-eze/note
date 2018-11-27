@@ -1,0 +1,34 @@
+public enum Type {
+    CODE("CODE1"),CODE2("CODE2"),CODE3("CODE3");
+
+    @Getter
+    private String code;
+
+    MemberType(String code) {
+        this.code = code;
+    }
+
+    public static Type convertByString(String typeName) {
+        for(Type typeInfo : Type.values()) {
+            if(typeInfo.getCode().equalsIgnoreCase(typeName)) {
+                return typeInfo;
+            }
+        }
+        return null;
+    }
+}
+
+---------------
+
+public Class BigType {
+    private Type type;
+    /**
+     * 타입이넘 파람
+     * @param typeName
+     */
+    private String typeName;
+
+    public void setType(String typeName) {
+        this.typeName = typeName;
+        this.type = Type.convertByString(typeName);
+    }
