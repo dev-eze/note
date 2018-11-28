@@ -1,0 +1,32 @@
+@RequestBody를 사용할 경우, 반드시 POST 방식이어야 하지요.
+@RequestBody는 JSON이나 XML 데이터를 적절한 MessageConverter로 읽어들일 때 사용합니다.
+Form POST 방식으로 데이터를 보낼 경우에는 String에만 사용이 가능하며, Map이나 Model에는 사용 불가합니다.
+
+그리고 @ModelAttribute는 흔히 모델을 받을 때 사용한다고 생각하기 쉬운데 아래의 두 human에는 동일한 값이 바인딩 됩니다.
+test( Human human)
+test( @ModelAttribute Human human)
+
+@ModelAttribute의 역할은 Model에 사용되는 attribute라는 뜻으로
+View에 전달할 Model에 세팅하라! 라는 뜻으로 볼 수 있습니다.
+
+사용법은 아래처럼 크게 전역과 지역 Setting으로 구분할 수 있습니다.
+
+-전역
+클래스 내부에 아래처럼 선언하면 모든 return View에서 자동으로 request.setAttribute() 된다.
+@ModelAttribute("human")
+public Human setHuman() {
+Human human = new Human();
+human.setName("김동률");
+human.setAge(13);
+return human;
+}
+// 동일 클래스 내의 모든 return view에서 request.setAttribute("human", human); 처럼 된다.
+
+-지역
+메소드의 인자로 기술하면 된다.
+public ModelAndView test(@ModelAttribute("human") Human human) {
+return "huamnView";
+}
+//이렇게 할 경우 인자로도 쓰고, 나중에 리턴할 때에 다시 huamn 객체를 setAttribute해서 전달한다.
+
+출처: http://sticky32.tistory.com/entry/SpringMVC-ModelAttribute-RequestBody-에-대해서 [Sticky]
