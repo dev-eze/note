@@ -1,0 +1,56 @@
+Controller 레벨에서 파라미터받는 다양한 방법
+
+1.httpServletRequest.getParameter()
+
+@RequestMapping("/")
+public String test(HttpServletRequest httpServletRequest) {
+    String id = httpServletRequest.getParameter("id");
+
+    return "test";
+}
+
+2.@RequestParam
+또다른 방법으로는 @RequestParam 어노테이션을 이용하면 간단하게 파라미터값을 가져올수 있다. 
+우선, 해당 어노테이션은 옵션이 존재한다.
+
+name, value (Alias for name)	String	파라미터 이름
+required:	boolean	해당 파라미터가 반드시 필수인지 여부, 기본값은 true
+defaultValue:	해당 파라미터의 기본값
+
+public String test(@RequestParam(value="id", defaultValue="false") String id) {
+
+required값을 true로 해놓고 (필수 파라미터 설정) 
+해당 파라미터를 담지 않고 요청을 보내게 되면 HTTP 400 에러를 뱉게 되니 옵션별로 사용법을 확인하여 사용하는 것이 중요하다. 
+
+3.바로 받기
+컨트롤러의 메소드에서 해당 어노테이션을 사용하지 않고도 바로 받을 수 도 있다.
+이렇게 바로 받을 경우는 필수 파라미터값이 false로 설정이 되고 변수명과 동일한 파라미터만 받을수 있게 되며 기본값 설정을 할수는 없다. 
+
+
+@RequestMapping("/")
+public String test(String id) {
+    return "test";
+}
+
+4.@RequestBody
+@RequestBody어노테이션을 사용할 경우 반드시 POST형식으로 응답을 받는 구조여야만 한다. 
+JSON 이나 XML같은 데이터를 적절한 messageConverter로 읽을때 사용하거나, POJO형태의 데이터 전체로 받을경우에 사용된다.
+단, 이 어노테이션을 사용하여 파라미터를 받을 경우 별도의 추가 설정(POJO 의 get/set 이나 json/xml 등의 messageConverter 등)
+을 해줘야 적절하게 데이터를 받을수가 있다.
+
+
+@PostMapping("/")
+public String test(@ReqeustBody ModelName name) {
+    return "test";
+}
+
+5.@ModelAttribute
+@RequestParam과 비슷한데 1:1로 파라미터를 받을경우는 @RequestParam를 사용하고, 
+도메인이나 오브젝트로 파라미터를 받을 경우는 @ModelAttribute으로 받을수 있다. 
+또한 이 어노테이션을 사용하면 검증(Validation)작업을 추가로 
+예로들어 null이라던지, 각 멤버변수마다 valid옵션을 줄수가 있고 여기서 에러가 날 경우 BindException 이 발생한다.
+
+6.Spring command 객체
+컨트롤러에서 파라미터로 받은 정보에 대해서는 view 에서 바로 사용이 가능하다.
+
+7.@PathVariable
