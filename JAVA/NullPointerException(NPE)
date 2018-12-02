@@ -1,0 +1,30 @@
+NullPointerException(NPE)
+자바 데이터 타입은 기본 타입(primitive type)과 참조 타입(reference type)이 있다. 
+참조 타입은 객체의 생성 이전에는 할당된 메모리 주소가 없는 null을 참조하는 변수이며 이를 가지고 아래 작업을 수행하면 NPE가 발생하게 된다.
+
+NPE가 발생하는 경우 
+ * null 객체의 instance 함수(static이 아닌 method)를 호출하는 경우
+ * null 객체의 instance 변수에 접근하는 경우
+ * null 배열 객체의 length를 구하려는 경우
+ * null 배열 객체의 값을 인덱스로 접근하는 경우
+ * 애플리케이션 단에서 NPE를 던지는 경우
+ 
+방지하려면?
+Input에 대해 필요한 validation 체크 후 적절한 오류를 뱉게하고, 리턴 값과 발생가능한 Exception 및 상황에 대해서 명시되어야 한다. 
+의도하지 않은 Input을 가지고 비즈니스 로직을 수행하게 되면 해당 값으로 인해 런타임 시 오류가 발생할 확률이 높아진다.
+  
+Java8 Optional class 이용하기
+null 값은 Empty, not initialized, 오류에 대한 반환 값(안티 패턴)등 다양한 용도로 사용되곤 한다. 
+null을 empty나 오류 상황에 대한 반환 값으로 만들지 말아야 하며, 부득이한 경우라면 설계단계에서 명확한 정의 및 convention을 미리 정하는게 필요하다. 
+또한, API레벨에서 null 대신 empty객체를 생성/반환하고, null에 대한 확인을 수행해주는 수단이 필요하다. 
+Java8에 추가된 java.util.Optional<T>을 활용하면 앞서 언급한 사항의 상당부분을 해결할 수 있다.
+
+Optional을 사용할 시 장점
+ * API 레벨에서 null 확인을 상당부분 대신 수행해준다
+ * 반복적인 null 확인을 줄이고 코드의 가독성을 높일 수 있다
+ * 가장 큰 장점은 직관적인 개발이 가능해진다
+
+Optional(T)로 null 참조에 대비해야 함을 알려주면, null 확인을 누락하는 실수나 불필요한 확인을 줄일 수 있다.
+java.util.Optional<T>는 사실 전혀 새로운 개념이 아니다. 
+Groovy의 Guava의 Optional, Scala의 Option 등 기존에 null에 안전한 객체의 참조 방법들이 있었고,
+Java8에서는 이와 유사한 java.util.Optional<T>가 도입되었다.
