@@ -1,0 +1,10 @@
+#Mapped Statements collection does not contain value
+
+
+CASE
+1. mapper id가 틀린 경우
+2. Parameter와 bean의 field명이  틀린 경우
+3. sql.xml에서 정의된 namespace와 DAO에서 호출하는 namespace가 다를 경우
+4. mapper가 정의가 되어 있지 않거나 Spelling이 틀린 경우
+5. mapper에 정의된 namespace 명칭이 같은 Application 내에 중복 될 경우
+[참고] http://rex4314.blog.me/146532215
