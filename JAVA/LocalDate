@@ -1,0 +1,20 @@
+System.out.println("오늘 일자 :  " + LocalDate.now()); // 2018-11-05
+       
+System.out.println("오늘 일시 :  " + LocalDateTime.now()); // 2018-11-05T21:25:19.239
+        
+System.out.println("지정 날짜 출력 :  " + LocalDate.of(1991, 5 ,14)); // 1991-05-14
+                                                     //년, 월, 일
+System.out.println("지정 날짜+시간 출력 :  " + LocalDateTime.of(2018, 5, 14, 13, 23, 33)); // 2018-05-14T13:23:33
+                                                            //년, 월, 일, 시, 분, 초
+        
+System.out.println("String ===> LocalDate :  " + LocalDate.parse("2018-05-14"));  // 2018-05-14
+        
+LocalDate localDate = LocalDate.of(2018, 12, 25);
+System.out.println("LocalDate ==> String :  "+ localDate.format(DateTimeFormatter.ISO_DATE)); //  2018-12-25
+        
+String startDate="2018-01-31";
+String endDate="2018-02-01";
+System.out.println("두 날짜사이의 월간격 : " + Period.between(LocalDate.parse(startDate), LocalDate.parse(endDate)).getMonths()); // 0
+System.out.println("두 날짜사이의 일간격 : " + Period.between(LocalDate.parse(startDate), LocalDate.parse(endDate)).getDays()); // 1
+System.out.println("시작날짜로 부터 3개월 이후  : " + LocalDate.parse(startDate).plusMonths(3)); // 2018-04-30
+        
