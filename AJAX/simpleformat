@@ -28,7 +28,7 @@
                     });
                     
                     
-           @RequestMapping(value="board/save/{title}", produces="text/plain;charset=UTF-8")
+  @RequestMapping(value="board/save/{title}", produces="text/plain;charset=UTF-8")
   @ResponseBody
   public String save(@PathVariable("title") String title) throws Exception {
     String rt = service.save(title);
