@@ -1,3 +1,4 @@
+1) enum 선언
 **
  * 멤버 타입 enum
  * (M: 대표자, N: 일반, H: 숨김)
@@ -21,3 +22,18 @@ public enum MemberType {
         return null;
     }
 }
+
+2) enum사용하는 모델: 바인딩 되는건 setter이기에 다음과 같이 작성
+    /**
+     * 멤버타입 파람
+     * @param memberTypeName
+     */
+    private String memberTypeName;
+
+    public void setMemberType(String memberTypeName) {
+        this.memberTypeName = memberTypeName;
+        this.memberType = MemberType.convertByString(memberTypeName);
+    }
+    
+3) mapper에서 insert시
+  #{모델명.이넘변수명}
