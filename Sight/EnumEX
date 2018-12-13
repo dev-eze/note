@@ -1,0 +1,23 @@
+**
+ * 멤버 타입 enum
+ * (M: 대표자, N: 일반, H: 숨김)
+ */
+public enum MemberType {
+    M("M"),N("N"),H("H");
+
+    @Getter
+    private String code;
+
+    MemberType(String code) {
+        this.code = code;
+    }
+
+    public static MemberType convertByString(String memberTypeName) {
+        for(MemberType memberTypeInfo : MemberType.values()) {
+            if(memberTypeInfo.getCode().equalsIgnoreCase(memberTypeName)) {
+                return memberTypeInfo;
+            }
+        }
+        return null;
+    }
+}
