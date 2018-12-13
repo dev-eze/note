@@ -1,0 +1,6 @@
+* 컨택정보등 조회시 null인경우 fail처리하고있는데, fe에서 error처리 로직을 타게 될 수 있으니 성공처리를하고 (처음엔 널일수도 있으니)
+    * 필수 등록값 밸리데이션
+        * 보통 api 경우 response, request정보 valid옵션을 각각 주는데 ( request에서 필수인값이 response에서는 필수가 아닐 수 있으니)
+            * 컨트롤러,서비스에서 if null처리는 지저분 할수 있다. 
+            * model을 2개씩 줄경우 , 음.. 너무많아져
+            * model안에 validation함수를 만들어서 체크
