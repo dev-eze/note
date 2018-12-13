@@ -55,3 +55,10 @@ Oracle 같은 경우는 Auto Increment 가 없고 Sequence를 사용해야만 �
   values
     (#{id}, #{name}, #{email}, syadate)
 </insert>
+
+
+1)useGeneratedKeys="true" 추가
+2)insert문 하단에
+    <selectKey keyProperty="testNo" resultType="Integer" order="AFTER">
+      SELECT LAST_INSERT_ID() AS TestNo
+    </selectKey>
