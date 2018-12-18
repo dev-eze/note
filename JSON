@@ -1,0 +1,52 @@
+JSON -> java.util.List
+
+모든 필드에 대해 @SerializedName 을 사용하여 작업 할 목록 매핑을 얻을 수있었습니다. Type 주변의 논리가 필요하지 않았습니다.
+
+아래의 # 4 단계 에서 디버거를 통해 코드를 실행하면 List<ContentImage> mGalleryImages 객체가 JSON 데이터로 채워져 있음을 확인할 수 있습니다.
+
+다음은 그 예입니다.
+
+1. JSON
+
+   {
+    "name": "Some House",
+    "gallery": [
+      {
+        "description": "Nice 300sqft. den.jpg",
+        "photo_url": "image/den.jpg"
+      },
+      {
+        "description": "Floor Plan",
+        "photo_url": "image/floor_plan.jpg"
+      }
+    ]
+  }
+2. 목록이있는 Java 클래스
+
+public class FocusArea {
+
+    @SerializedName("name")
+    private String mName;
+
+    @SerializedName("gallery")
+    private List<ContentImage> mGalleryImages;
+}
+3. 목록 항목의 Java 클래스
+
+public class ContentImage {
+
+    @SerializedName("description")
+    private String mDescription;
+
+    @SerializedName("photo_url")
+    private String mPhotoUrl;
+
+    // getters/setters ..
+}
+4. JSON을 처리하는 Java 코드
+
+    for (String key : focusAreaKeys) {
+
+        JsonElement sectionElement = sectionsJsonObject.get(key);
+        FocusArea focusArea = gson.fromJson(sectionElement, FocusArea.class);
+    }
