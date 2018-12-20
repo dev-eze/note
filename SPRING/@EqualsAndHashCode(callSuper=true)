@@ -1,0 +1,2 @@
+#@EqualsAndHashCode(callSuper=true)
+상속시 
