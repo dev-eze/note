@@ -1,0 +1,2 @@
+#IllegalStateException: Ambiguous mapping found.
+컨트롤러안에 같은 httpmethod와 mapping url이 동일한게 존재할때 발생
