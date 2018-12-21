@@ -111,4 +111,6 @@ SUPPORTS: 현재 진행중인 트랜잭션이 있으면 그것을 사용, 없으
 NOT_SUPPORTED: 현재 진행중인 트랜잭션이 있으면 그것을 미사용, 없으면 그냥 진헹
 NEVER: 현재 진행중인 트랜잭션이 있으면 Exception. 없으면 그냥 진행
 
+예)@Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
+catch절에서 throw new RuntimeException 발생시킴. 
 
