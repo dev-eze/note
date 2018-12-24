@@ -1,0 +1,3 @@
+Gson과 JSON 배열을 java.util.List로 파싱하기
+
+1.@SerializedName
