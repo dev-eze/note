@@ -1,6 +1,0 @@
-#Gson
-
-1.@SerializedName
-객체를 직렬화 및 역직렬화 할 때 사용된다
-
-
