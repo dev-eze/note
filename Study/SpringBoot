@@ -1,0 +1,63 @@
+* moto: just run, most spring boot applications need very little spring configration.
+* definition : framework가 아닌 spring을 지원해주는 도구
+* how: starter dependency, auto configuration
+* pros and cons
+    * 대용량 트래픽에서는 부트가 비효율적
+    * api 서버에서만 사용 가능
+    * 스프링을 몰라도 웹애플리케이션 구동 가능
+    * 필요하다면 언제든 걷어내는게 가능 
+    * 스프링부트는 스프링 프레임워크를 지원해주는 도구일뿐 
+* reference guide
+    * https://docs.spring.io/sptring-boot/docs/current-SNAPSHOT/reference/htmlsingle/
+    * over view, ajenda만 봐도 어떤 기능과 디펜더시를 제공해주는 확인 가능
+    * https://github.com/ihoneymon/translate-spring-boot-reference/blob/master/README.md
+    * 스프링부트코딩공작소 
+    * 스프링부트프로그래밍입문(예제중심)
+* release note 
+    * 이전버전과 다음버전간의 변경사항
+    * https://github.com/spring-projects/spring-boot/wiki
+* definition of start dependency
+    * pros : 필요한 dependency와 version matching을 auto management
+    * location
+        * spring-boot-starter-*
+            * Meta-INF
+                * Pom.xml
+    * find need dependency
+    * version간 호환성
+        * version matching
+        * dependency management
+            * spring-boot-dependencies: spring booy관련된 dependency들을 관리
+                * spring-boot-parent: 개발환경에 대한 dependency를 관리
+                    * spring-boot-starters
+                        * spring-boot-starter-*
+* definition of auto configuration
+    * pros
+        * instaead DataSource 생성
+            * application.properties에 url, driverClassName, username, password정보 입력
+        * ViewResolver, FreeMarketConfigurer사용시 @Bean생성안해도된다
+    * fundamentals
+        * @SpringBootApplication
+            * @EnableAutoConfiguration
+                * @EnableAutoConfiguration
+                    * AutoConfigurationImportSelector
+                    * AutoConfiguration Candidate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
