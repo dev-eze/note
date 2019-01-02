@@ -1,0 +1,16 @@
+#Field '컬럼명' doesn't have a default value
+해당 컬럼은 nullable한 값이다.
+
+SELECT @@sql_mode;
+ALTER TABLE 테이블명 MODIFY 컬럼 VARCHAR(64) DEFAULT NULL;
+
+https://ourcodeworld.com/articles/read/757/how-to-solve-mysql-exception-sqlstatehy000-general-error-1364-field-field-name-doesnt-have-a-default-value  
+ 
+
+How to solve MySQL exception SQLSTATE[HY000]: General error: 1364 Field 'field_name' doesn't have a default value
+Learn why this exception is thrown in MySQL and how to bypass it.
+Our Code World
+최근에 mysql 버전업하면서 영향받은 부분인거 같음.
+nullable로되어있어도 DB모드가 strict로 되어있으면  
+default값 지정안된 경우 위 에러가 날 수 있다.
+
