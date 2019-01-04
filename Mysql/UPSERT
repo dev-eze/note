@@ -1,0 +1,5 @@
+#UPSERT
+해당 테이블 pk가 존재하는 경우 update, 존재하지 않은 경우 insert
+ON DUPLICATE KEY UPDATE a=a,b=b
+
+pk가 ai경우는 서비스단에서 처리할 수 밖에
