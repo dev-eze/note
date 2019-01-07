@@ -1,0 +1,5 @@
+설정을 따로 해주지 않았을 경우 매핑시 vo의 파라미터 명과 컬럼명이 완전히 동일해야한다.
+underscore-camelcase문제로 추가설정하는게 일반적인데,
+DB가 underscore로 구성되어있고 vo는 camelcase로 되어있다면 각각의 컬럼을 as (vo파라미터명) 으로 변경해서 select하는 방식으로
+resultMap으로 한번 감싸서 받아주거나,
+설정 수정이 가능할경우 camelcase와 underscore문제라면 mybatis설정에서 mapUnderscoreToCamelCase를 true로 주는것으로 자동 매핑처리가 가능하다.
