@@ -1,0 +1,22 @@
+          $('input[name="type"]').change(function() {
+            	var selected = $('input[name="type"]:checked').val();
+            	if (selected == "value") {
+            		$('#formname').show();
+            	}
+            	else {
+            		$('#formname').hide();
+            	}
+            });
+            
+            
+            
+          	$(".name").click(function() {
+            	var target = $(this).attr('id');
+            		target = target.replace('btnRemove','');
+            		target = target.replace('Img','');
+            	var params = {};
+	            	params.commonId = $("#id").val();
+	            	params.commonData = $("#data").val();
+	            	params.attachFileId = $(this).val();
+                function(params, target);
+            });
