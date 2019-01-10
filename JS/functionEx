@@ -44,3 +44,14 @@
         		
         	});
         }
+        
+            if ("" == $("#title").val() || "" == $("#contents").val()) {
+                alertify.alert("내용을 입력하세요.");
+                return;
+            }
+            
+            if (typeof $("input[name=type]:checked").val() == "undefined" ) {
+                alertify.alert("]타입을 입력하세요.");
+                document.getElementById('update-grouptype-checkbox').focus();
+                return;
+            }
