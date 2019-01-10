@@ -1,0 +1,8 @@
+#ex
+if (obj instanceof Integer) { 
+    System.out.println("숫자형입니다.")
+} else if (obj instanceof String) {
+    System.out.println("문자열입니다.")
+} else if (obj instanceof String[]) {
+    System.out.println("문자열 배열입니다.")
+}
