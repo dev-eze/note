@@ -1,0 +1,23 @@
+          	#change이벤트시 show&hide
+            $('input[name="button"]').change(function() {
+            	var selected = $('input[name="name"]:checked').val();
+            	if (selected == "value1") {
+            		$('#divName').show();
+            	}
+            	else {
+            		$('#divName').hide();
+            	}
+            });
+            
+            
+            #click이벤트
+          	$(".button").click(function() {
+            	var target = $(this).attr('id');
+            		target = target.replace('btnRemove','');
+            		target = target.replace('Img','');
+            	var params = {};
+	            	params.commonId = $("#userId").val();
+	            	params.commonData = $("#data").val();
+	            	params.attachFileId = $(this).val();
+                functionCalling();
+            });
