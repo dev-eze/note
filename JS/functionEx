@@ -1,0 +1,46 @@
+     
+            alertify.confirm("저장 하시겠습니까?", function(e) {
+                if (e) {
+                	var title = $("#title").val();
+                	var contents = $("#contents").val();
+                	var groupType = $("input[name=groupType]:checked").val();
+                	
+                	 
+                	$('#updateFrm input[name="title"]').val(title);
+                	$('#updateFrm input[name="contents"]').val(contents);
+                	$('#updateFrm input[name="groupType"]').val(groupType);
+              
+                  
+                	addAttachInputToForm();                	                                                        	
+                    $.ajax({
+                        url: "",
+                        type: 'POST',
+                        data: $("#formname").serialize(),
+                        success: function(result) {
+                            var jsonObj = $.parseJSON(result);
+                            if ("true" == jsonObj.success) {
+                            	alertify.alert("임시저장되었습니다.",function(e) {
+                            		if(e){
+                                		location.reload();
+                            		}
+                            	});
+                            }
+                        }
+                    });
+                }
+            });
+            
+        function delete(id)
+        {
+        	$.ajax({
+        		url:"",
+        		cache:false,
+        		data:{
+        			"id":id
+        		}
+        	}).done(function(result){
+        		alert("삭제되었습니다.");
+        		location.reload();
+        		
+        	});
+        }
