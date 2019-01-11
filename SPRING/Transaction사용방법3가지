@@ -1,0 +1,106 @@
+Spring Transaction 사용 시 Custom Exception 을 사용하려면 몇가지 방법이 필요하다.
+
+
+
+try..catch 문에서 throw 한다고 롤백이 발생하는 것이 아니다. 그냥 throw만 할 경우 commit이 되버리는 웃지못할 상황이 발생한다.
+
+
+
+총 3가지의 방법을 제시한다~~ 경우에 맞게 사용하면 될 듯~
+
+
+
+1. 강제적 의사표시방법
+
+만약 Custom Exception을 사용하여 강제적 rollback을 하고싶으면 먼저 catch 문에 아래 구문을 추가시켜줘야 한다.
+
+- TransactionAspectSupport.currentTransactionStatus().setRollbackOnly(); 
+
+Rollback을 하겠다는 의사표시구문이다.
+
+
+
+그 후에 throw로 Custom Exception을 던져주면 끝~
+
+
+
+  @Override
+
+	public void insert(String...value) throws CustomException{
+
+		try {			
+
+			sqlSessionTemplate.insert("default.insertName", name);			
+
+		} catch (Exception e) {
+
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+
+			throw new TestException(500, e.getMessage());
+
+		}
+
+	}
+
+
+
+2. @Transactional 어노테이션 지정방법
+
+어노테이션 방식의 경우 선언으로 지정할 수 있다. 
+
+rollbackFor=TestException.class 의 경우 해당 exception 에 대해서 롤백을 진행하고
+
+noRollbackFor=Test2Exception.class 의 경우 해당 exception 에 대해서 롤백을 진행하지 않는다.
+
+
+
+	@Transactional(rollbackFor=TestException.class, noRollbackFor=Test2Exception.class)
+
+	@Override
+
+	public void getClient(String...value) throws Test2Exception{
+
+		try {			
+
+			sqlSessionTemplate.insert("default.insertName", name);			
+
+		} catch (Exception e) {
+
+			throw new Test2Exception(500, "DB Error");
+
+		}
+
+	}
+
+
+
+3. AOP Transaction 지정방식
+
+AOP 방식의 경우 advice 선언으로 지정할 수 있다. 
+
+rollback-for=TestException.class 의 경우 해당 exception 에 대해서 롤백을 진행하고
+
+no-rollback-for=Test2Exception.class 의 경우 해당 exception 에 대해서 롤백을 진행하지 않는다.
+
+	<aop:aspectj-autoproxy />
+
+	<aop:config proxy-target-class="true">
+
+		<aop:pointcut id="DefaultService" expression="execution(* brace.service..*.*(..))" />
+
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="DefaultService"/>
+
+	</aop:config>
+
+	
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+
+		<tx:attributes>
+
+			<tx:method name="get*" no-rollback-for="brace.exception.Test2Exception" rollback-for="brace.exception.TestException"/>
+
+		</tx:attributes>
+
+	</tx:advice>
+
