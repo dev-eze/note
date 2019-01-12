@@ -1,0 +1,8 @@
+SELECT 
+   @ROWNUM := @ROWNUM + 1 AS Seq,
+ 
+   CONCAT(IFNULL(X.Location1,''),IFNULL(X.Location2,'')) AS Location
+   
+FROM (
+   SELECT * FROM TABLE 
+) X, (SELECT @ROWNUM := 0) R; 
