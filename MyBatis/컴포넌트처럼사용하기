@@ -1,0 +1,16 @@
+    #셀렉트, 리스트 카운트시 조건이 같아야 하는게 일반적인데, 이럴때 아래와 같이 하면 컴포넌트처럼 사용이 가능하다.
+    
+    <!-- 페이징 -->
+    <sql id="_LIMIT">
+         LIMIT #{limitSize} OFFSET #{startIndex}
+   </sql>
+   
+    <!-- 공동 조건 -->
+    <sql id="_WHERE">
+        WHERE ~
+    </sql>
+    
+    <select id="select">
+        <include refid="_WHERE" />
+        <include refid="_LIMIT" />
+    </select>
