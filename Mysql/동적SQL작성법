@@ -1,0 +1,109 @@
+ 
+개요
+MyBatis는 XML 기반의 매우 유연하고 강력한 동적 SQL(Dynamic SQL) 작성 기능을 제공한다. 
+본 글에서는 Java 기본 타입에 대한 기본식 작성 방법을 소개하고자 한다.
+
+bool은 기본 타입으로 기본 값은 false이다.
+
+#ibatis 비교문 지원 태그
+
+
+isNull : "널일경우"
+
+isNotNull : "널이아닐경우"
+
+isEmpty : "공백일경우"
+
+isNotEmpty : "공백이아닐경우"
+
+isGreaterTan : ">"
+
+isGreaterEqual : ">="
+
+isLessThan : "<"
+
+isLessEqual : "<="
+
+isEqual : "=="
+
+isNotEqual : "!="
+
+#mybatis 비교문 지원 태그
+
+
+if  : 단일조건문
+
+choose when otherwise : 다중조건문
+
+
+
+출처: http://hellogk.tistory.com/100 [IT Code Storage]
+
+<!-- true일 때 -->
+<if test="value"></if>
+
+<!-- false일 때 -->
+<if test="!value"></if>
+Copy
+Boolean
+Boolean은 기본 타입인 bool의 랩퍼 클래스로 기본 값은 null이다.
+
+<!-- true일 때 -->
+<if test="value"></if>
+
+<!-- true가 아닐 때 (null 또는 false) -->
+<if test="!value"></if>
+
+<!-- null일 때 -->
+<if test="value == null"></if>
+
+<!-- null이 아닐 때 (true 또는 false) -->
+<if test="value != null"></if>
+Copy
+int
+int는 기본 타입으로 기본 값은 0이다.
+
+<!-- 특정 값일 때 -->
+<if test="value == 1"></if>
+
+<!-- 특정 값보다 작을 때 -->
+<if test="value lt 1"></if>
+
+<!-- 특정 값보다 작거나 같을 때 -->
+<if test="value lte 1"></if>
+
+<!-- 특정 값보다 클 때 -->
+<if test="value gt 1"></if>
+
+<!-- 특정 값보다 크거나 같을 때 -->
+<if test="value gte 1"></if>
+Copy
+Integer
+Integer은 기본 타입인 int의 랩퍼 클래스로 기본 값은 null이다. 앞서 int 타입의 모든 조건을 가지면서 아래 조건을 추가로 가진다.
+
+<!-- null일 때 -->
+<if test="value == null"></if>
+
+<!-- null이 아닐 때 (값을 가질 때) -->
+<if test="value != null"></if>
+Copy
+String
+String은 기본 문자열 타입 클래스로 기본 값은 null이다.
+
+<!-- 특정 문자와 일치할 때 -->
+<if test="value == 'H'.toString()"></if>
+
+<!-- 특정 문자와 일치하지 않을 때 -->
+<if test="value != 'H'.toString()"></if>
+
+<!-- 특정 문자열과 일치할 때 -->
+<if test="value == 'Hello'"></if>
+
+<!-- 특정 문자열과 일치하지 않을 때 -->
+<if test="value != 'Hello'"></if>
+
+<!-- null일 때 -->
+<if test="value == null"></if>
+
+<!-- null이 아닐 때 (문자열을 가질 때) -->
+<if test="value != null"></if>
