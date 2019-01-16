@@ -1,0 +1,41 @@
+public enum GroupType {
+    NEWS(10,"ten"),
+    INFO(20,"twenty");
+
+    @Getter
+    private Integer code;
+    @Getter
+    private String codeValue;
+
+
+    GroupType(Integer code, String codeValue) {
+        this.code = code;
+        this.codeValue = codeValue;
+    }
+
+    public static GroupType convertByObject(Object param) {
+        for(GroupType groupTypeInfo : GroupType.values()) {
+            if(param instanceof Integer) {
+                if(groupTypeInfo.getCode() == param) {
+                    return groupTypeInfo;
+                }
+            } else if(param instanceof String) {
+                if(groupTypeInfo.getCodeValue().equalsIgnoreCase((String)param)) {
+                    return groupTypeInfo;
+                }
+            }
+        }
+        return null;
+    }
+
+}
+
+
+@Test
+    public void 테스트() {
+        Object param = 20;
+        GroupType result = GroupType.convertByObject(param);
+        log.info(result.toString());
+        Assert.assertEquals(GroupType.INFO, result);
+
+    }
