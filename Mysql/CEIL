@@ -1,0 +1,31 @@
+#CEIL()
+부동 소수점을 올림해서 반환하는 함수
+
+
+ SELECT CEIL( n )
+
+ SELECT CEILING( n )
+
+
+ex.1)
+ mysql> SELECT CEIL(0.5);
+ -> 1
+
+ex.2)
+ mysql> SELECT CEIL(0.1);
+
+ -> 1
+
+
+ex.3)
+ mysql> SELECT CEILING( -1.2);
+ -> -1
+
+
+ex.4)
+ mysql> SELECT CEILING( 1.23);
+ -> 2
+
+
+#Round()
+소수점 자리를 round 하는 함수
