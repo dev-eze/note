@@ -1,0 +1,73 @@
+#동작
+
+Spring MVC Controller에서 요청을 object로 binding할 때 @RequestBody 라는 어노테이션을 제공한다.
+이 어노테이션의 기능은 다음과 같다.
+
+@RequestBody를 사용하지 않은 경우 : query parameter, form data를 object에 맵핑한다.
+@RequestBody를 사용하는 경우 : body에 있는 data를 HttpMessageConverter를 이용해 선언한 object에 맵핑한다
+
+post form data 전송은 다음과 같은 모양이다. 
+[head 영역]
+-------
+키1=데이터1&키2=데이터2
+
+
+ 를 사용하는 경우는 body영역의 모양을 json과 같이 converter가 변환할 수 있는 형태로 전달해야하며 다음과 같은 모양이다. 
+[head 영역]
+-------
+{ "키1" : "데이터1", "키2" : "데이터2" }
+
+@RequestBody를 사용하는 경우 두번째 형태의 body 데이터를 처리할 수 있다. 
+
+jquery 요청시
+jquery로 요청하는 경우 POST나 PUT 요청은 기본이 form data 요청이다.
+json을 변수로 선언해도 jquery는 form data 형태로 변경하여 요청을 한다
+
+var parameter = {};
+parameter.key1 = "value1";
+parameter.key2 = "value2";
+$.ajax({
+    url : "요청url",
+    type : "POST",
+    data : parameter
+});
+
+
+만약 json body로 요청을 하고 싶은 경우 다음과 같이 요청한다. 
+var parameter = {};
+parameter.key1 = "value1";
+parameter.key2 = "value2";
+$.ajax({
+    url : "요청url",
+    type : "POST",
+    contentType: "application/json; charset=utf-8",
+    data : JSON.stringify(parameter)
+});
+
+언제 써야할까?
+GET 이나 DELETE 요청은 body에 데이터를 담지 않는다.
+따라서 @RequestBody를 사용하지 않는 것이 좋다.
+@RequestBody를 사용하지 않는 경우에도 Spring MVC는 기본적으로 GET과 DELETE 요청시 form data처리를 하지 않는다.
+간혹 요청 시 필요한 파라메터가 많은 경우 object에 바인딩을 하고 사용하기 위해 @RequestBody로 요청으로 사용하는 경우가 있지만 개인적으로 원래 사용방식을 따르는 형태가 좋지 않을까 싶다.
+
+angular.js나 backbone.js같은 mv? javascript 라이브러리를 사용하는 경우 기본으로 json 포맷의 requestBody를  전송한다.
+이런 경우는 @RequestBody로 요청을 처리하는게 좋다.
+
+restTemplate 요청은 아무래도 form data 전송보다 json body형태가 훨씬 간결하고 유지보수하기 편하다.
+
+대략 정리하면 다음과 같은 전반적인 규칙으로 사용을 하면 좋지 않을까 싶다.
+
+
+Case	@RequestBody 사용 여부	description
+GET 요청 (brower)	X	query parameter 사용
+POST 요청 (brower)	X	form data 사용
+PUT 요청 (brower)	X	form data 사용
+DELETE 요청 (brower)	X	query parameter 사용
+GET 요청 (javascsript mv? library)	X	query parameter 사용
+POST 요청 (javascsript mv? library)	O	
+PUT 요청 (javascsript mv? library)	O	
+DELETE 요청 (javascsript mv? library)	X	query parameter 사용
+GET 요청 (restTemplate)	X	query parameter 사용
+POST 요청 (restTemplate)	O	
+PUT 요청 (restTemplate)	O	
+DELETE 요청 (restTemplate)	X	query parameter 사용
