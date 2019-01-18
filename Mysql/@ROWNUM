@@ -1,8 +1,10 @@
-SELECT 
-   @ROWNUM := @ROWNUM + 1 AS Seq,
- 
-   CONCAT(IFNULL(X.Location1,''),IFNULL(X.Location2,'')) AS Location
-   
-FROM (
-   SELECT * FROM TABLE 
-) X, (SELECT @ROWNUM := 0) R; 
+#조인문에서의 rownum 조회
+select  @rownum := @rownum + 1 AS Seq,~ 
+from ~
+left outer join~
+, (select @rownum:=0) TMP
+where ~
+
+#초기화 해주는 이유는?
+0으로 초기화를 해주지않으면 조회시 마다 rownum이 변경됨
+
