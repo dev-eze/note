@@ -1,0 +1,8 @@
+Integer.valueOf(AES256Util.deckey(this.encAttachFileId));
+
+
+  public void setEncFileIdByAttachFileId() throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
+    if (this.attachFileId != 0) {
+      this.encFileId = AES256Util.encKey(String.valueOf(attachFileId));
+    }
+  }
