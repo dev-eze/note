@@ -2,6 +2,8 @@
    
    public String getDate() {
         LocalDate nowDate = LocalDate.now();
-        String yyyymmdd = DateTimeFormatter.ISO_LOCAL_DATE.format(nowDate);
+        //String yyyymmdd = DateTimeFormatter.ISO_LOCAL_DATE.format(nowDate); //2019-01-20
+        String yyyymmdd = DateTimeFormatter.BASIC_ISO_DATE.format(nowDate);
+        log.info("결과:{}", yyyymmdd); //20190120
         return yyyymmdd;
     }
