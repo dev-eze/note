@@ -1,0 +1,7 @@
+   #yyyymmdd 형식의 날짜 LocalDate 사용하여 구하기
+   
+   public String getDate() {
+        LocalDate nowDate = LocalDate.now();
+        String yyyymmdd = DateTimeFormatter.ISO_LOCAL_DATE.format(nowDate);
+        return yyyymmdd;
+    }
