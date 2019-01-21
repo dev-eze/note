@@ -1,0 +1,1 @@
+  <if test="@org.apache.commons.lang.StringUtils@isNotBlank(ColumnName)">
