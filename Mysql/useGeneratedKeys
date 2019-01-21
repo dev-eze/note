@@ -58,7 +58,8 @@ Oracle 같은 경우는 Auto Increment 가 없고 Sequence를 사용해야만 �
 
 
 1)useGeneratedKeys="true" 추가
-2)insert문 하단에
+2)keyProperty = "testNo" 추가
+3)insert문 하단에
     <selectKey keyProperty="testNo" resultType="Integer" order="AFTER">
       SELECT LAST_INSERT_ID() AS TestNo
     </selectKey>
