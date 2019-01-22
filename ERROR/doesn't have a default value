@@ -13,4 +13,4 @@ Our Code World
 최근에 mysql 버전업하면서 영향받은 부분인거 같음.
 nullable로되어있어도 DB모드가 strict로 되어있으면  
 default값 지정안된 경우 위 에러가 날 수 있다.
-
+ 
