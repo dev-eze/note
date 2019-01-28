@@ -1,0 +1,1 @@
+<input type="hidden" id="campaign_${item.id}" data-value="${fn:escapeXml(item.toJSON())}" />
