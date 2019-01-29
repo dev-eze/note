@@ -1,0 +1,8 @@
+SELECT *
+        FROM 테이블이름 a
+        WHERE EXISTS (
+          select *
+          from 테이블이름 b
+          where a.키 = b.키
+          and b.키= #{키}
+        );
