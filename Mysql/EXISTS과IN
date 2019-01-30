@@ -1,0 +1,37 @@
+IN 
+지정된 값이 하위 쿼리 또는 목록의 모든 값과 일치하는지 확인
+
+EXISTS 
+행의 존재 여부를 테스트 할 하위 쿼리를 지정
+
+어느 쪽이 더 빠른지는 내부 쿼리에 의해 페치 된 쿼리의 수에 따라 다르다.
+IN 연산자를 사용하는 경우 SQL 엔진은 내부 쿼리에서 가져온 모든 레코드를 검색한다.
+반면 EXISTS 를 사용하는 경우 SQL 엔진은 일치하는 항목을 찾으면 즉시 검색 프로세스를 중지.
+
+EXIST는 참 또는 거짓을 평가하지만 IN은 여러 값을 비교 가능. 
+레코드가 존재하는지 여부를 모르는 경우 EXIST를 선택하는것이효율적
+
+
+
+EXISTS 는 쿼리가 결과를 반환했는지 여부를 알려준다.
+
+SELECT * 
+FROM Orders o 
+WHERE EXISTS (
+    SELECT * 
+    FROM Products p 
+    WHERE p.ProductNumber = o.ProductNumber)
+
+
+SELECT * 
+FROM Orders 
+WHERE ProductNumber IN (1, 10, 100)
+다음과 같이 IN 절에 조회 결과를 사용할 수도 있습니다.
+
+SELECT * 
+FROM Orders 
+WHERE ProductNumber IN (
+    SELECT ProductNumber 
+    FROM Products 
+    WHERE ProductInventoryQuantity > 0)
+ 
