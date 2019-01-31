@@ -1,0 +1,18 @@
+var btn=document.getElementById('btnproperty');
+
+ 
+
+btn.disabled = 'disabled';
+
+
+
+<input class="btn sty01 onbtn" value="등록" onclick="fn_formSubmit();" type="button" id="btnproperty">
+
+
+등록버튼에 id부여하고.
+등록버튼 눌렀을때 스크립트함수에서
+해당 id 버튼을 비활성화 시킴.
+
+스크립트에서 해당 코드지우면 여전히 중복클릭이되니, 
+리스크요인이 있다면 빽단에서 한번 더 처리가 필요.
+
