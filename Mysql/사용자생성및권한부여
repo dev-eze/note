@@ -1,0 +1,15 @@
+1.데이터 베이스 선택
+use mysql;
+
+
+2.현재 등록된 사용자 확인
+select host, user form user;
+
+3.사용자 추가
+create user 사용자아이디@localhost identified by '비밀번호';
+
+4.확인
+select host, user form user;
+
+5.권한부여
+grant all privileges on 데이터베이스.*to 사용자아이디@localhost identified by '비밀번호';
