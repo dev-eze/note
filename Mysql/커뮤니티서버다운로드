@@ -9,6 +9,18 @@ https://dev.mysql.com/downloads/mysql/
 
 2.설치시 임시 비밀번호 지정
 
+3.설치시 mysql서버 시작옵션 체크하거나 시스템환경설정에서 Mysql서버 시작
+
 3.터미널에서 Mysql bin까지 이동
 Base Directory : /usr/local/mysql
 Error Log : /usr/local/mysql/data/mysqld.local.err
+
+4.sudo ./mysql -p 명령어로 Mysqltlfgod
+앞 경로가 Mysql>로 변경되면 접속 성공
+
+5.변경사항 적용
+flush privileges;
+
+6.exit
+
+
