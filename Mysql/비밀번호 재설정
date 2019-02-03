@@ -1,5 +1,5 @@
 1.cd /usr/local/mysql/bin/
-2.sudo ./mysql
+2.sudo ./mysql (-p옵션으로 패스워드)
 3./usr/local/mysql/bin/mysql -uroot
 4.sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables
 
