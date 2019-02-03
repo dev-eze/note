@@ -7,18 +7,25 @@
 즉, 비밀번호 없이도 MySQL에 접속할 수 있게 된다. 
 mysqld_safe –skip-grant-tables 명령어는 반드시 관리자 권한(sudo)로 실행하고 경로에도 ./를 붙여서 실행해야 한다.
 입력해야하는 비밀번호는 MySQL 비밀번호가 아닌 맥의 관리자 비밀번호다.
+---------------------------------------------
 
+#비밀번호 재설정방법
 
-#비밀번호 바꾸는 방법
-데이터베이스 선택
+1.mysql 접속
+-u root -p
+
+2.데이터베이스 선택
 mysql> use mysql; 
 
-비밀번호 변경
-mysql> update user set authentication_string=password('root') where user='root';
-
-컬럼 확인
+3.user테이블 확인
+describe user;
 show full columnes from user;
 select * from user;
 
-적용
+4.비밀번호 변경
+mysql> update user set authentication_string='root' where user = 'root';
+
+5.적용
 mysql> flush privileges;
+
+6.quit
