@@ -1,0 +1,14 @@
+#참고
+https://dev.mysql.com/doc/
+
+
+1. 홈페이지에서 커뮤니티서버 사양에 맞는것으로 다운로드
+https://dev.mysql.com/downloads/mysql/
+
+사양확인: config LONG_LIMIT
+
+2.설치시 임시 비밀번호 지정
+
+3.터미널에서 Mysql bin까지 이동
+Base Directory : /usr/local/mysql
+Error Log : /usr/local/mysql/data/mysqld.local.err
