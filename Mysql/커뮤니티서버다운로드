@@ -23,4 +23,22 @@ flush privileges;
 
 6.exit
 
+그리고 터미널에서 mysql을 매번 /usr/local/mysql/bin에 들어가지않고 사용하기 위해서 PATH에 추가해주는게 좋음.
+cd nano .bash_profile 
+로 
+.bash_profile파일을 편집필요.
+맨 아래에 
+export PATH=$PATH:/usr/local/mysql/bin 
+을 추가하고
+
+^x
+^y
+순으로 저장.
+
+
+
+그러면 앞으로 터미널을 켜서 바로 mysql 명령어를 사용할 수 있다.
+
+
+
 
