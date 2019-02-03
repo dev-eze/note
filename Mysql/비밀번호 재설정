@@ -1,0 +1,14 @@
+1.cd /usr/local/mysql/bin/
+2.sudo ./mysql
+3./usr/local/mysql/bin/mysql -uroot
+4.sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables
+
+입력하면 인증을 생략하고 안전모드로 데몬을 실행한다. 
+즉, 비밀번호 없이도 MySQL에 접속할 수 있게 된다. 
+mysqld_safe –skip-grant-tables 명령어는 반드시 관리자 권한(sudo)로 실행하고 경로에도 ./를 붙여서 실행해야 한다.
+입력해야하는 비밀번호는 MySQL 비밀번호가 아닌 맥의 관리자 비밀번호다.
+
+/usr/local/mysql/bin/mysql -uroot
+mysql> use mysql; 
+mysql> update user set authentication_string=password('root') where user='root';
+mysql> flush privileges;
