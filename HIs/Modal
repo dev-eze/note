@@ -1,1 +1,43 @@
 
+<a href="#" onclick="popDetail('${item.id}');" data-toggle="modal" data-target="#detailModal">[모달정보]</a><br/>
+
+        <div class="modal" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="detailModalLabel">모달이름</h4>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+                //상세 팝업 리프레쉬
+            function popDetail(id) {
+                Wmask.on({spinner : true});                
+                $('#detailModal').find('.modal-body').empty();
+                var detail = $('#id_' + detailId).data('value');
+                
+                getDetailHtml(detail).done(function(html) {
+                    $('#detailModal').find('.modal-body').append(html);
+                }).fail(function(err) {
+                    console.log(err);
+                }).always(function() {
+                    Wmask.off();
+                });
+            }
+      
+                  //상세 팝업
+            function detailModal(detail) {
+                return ajax.get('/web/project/popDetail?lms=' + new Date().getMilliseconds(), {
+                    detailId : detail.detailId,
+                    name : detail.name
+                });
+            }
+      
