@@ -1,0 +1,19 @@
+<div class="checkbox">
+<label>
+<form:checkbox path="searchParam.option" value="candy" />사탕
+</label>
+<label>
+<form:checkbox path="searchParam.option" value="chocolate" />초콜렛
+</label>
+<label>
+<form:checkbox path="searchParam.option" value="jelly" />젤리
+</label>
+</div>
+                                        
+                                        
+private String[] option;
+                                        
+                                        
+<if test="option != null and option.length > 0">
+ AND a.OptionName IN (<foreach collection="option" item="item" separator=",">#{item}</foreach>)
+</if>
