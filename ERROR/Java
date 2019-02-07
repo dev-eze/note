@@ -1,1 +1,19 @@
 #javax.crypto.IllegalBlockSizeException: Input length must be multiple of 16 when decrypting with padded cipher
+
+
+#Field error in object 'searchParam' on field 'endDate': rejected value []; codes [typeMismatch.searchParam.endDate,typeMismatch.endDate,typeMismatch.java.util.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [searchParam.endDate,endDate]; arguments []; default message [endDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.util.Date' for property 'endDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.util.Date for value ''; nested exception is java.lang.IllegalArgumentException
+String <-> java.util.Date 컨버트간 타입미스매치 에러
+
+#java.lang.IllegalStateException: Neither BindingResult nor plain target object for bean name.... v1.1
+- commandName 을 지정할 객체와 연결이 안되서 나오는 에러
+입력 폼을 만들어서 path 를 지정하고 속성 값을 지정하면 속성이 있는지 속성이 작성되어 있는 객체와 비교를 한다.
+비교 할 객체가 연결이 안되어 있어서 에러가 발생 하는 것 
+객체와 연결이 되었는데 에러가 계속 발생 할 경우에는 path 에 지정한 속성 이름과 객체의 이름이 일치 하는지,한다면 값을 제대로 담아보내고 있는지 확인필요.
+객체 정보를 넘겨 줘야 비교가 가능하기 때문에 오류가 발생 하시면 객체를 넘겨 주었는지
+또는 비교하는 속성 이름이 다른지 비교해서 오타가 없는지
+나의 경우 <form:checkbox path="searchParam.statusOption" value="temp" />
+${.변수명.객체값}주었더니 
+Neither BindingResult nor plain target object for bean name '' available as request attribute
+오류를 뱉었다.
+
+
