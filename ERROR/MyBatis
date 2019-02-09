@@ -10,9 +10,8 @@ CASE
 
 
 #com.mysql.jdbc.exceptions.jdbc4.MySQLDataException is outside valid range for the datatype INTEGER.
-
 받는 객체에서 Integer로 담을 수 없는 크기에 데이터가 바인딩 되어서.. Long으로 바꿔준다.
 
 # A query was run and no Result Maps were found for the Mapped Statement 'mappename.id'.  
 It's likely that neither a Result Type nor a Result Map was specified.
-조회된 결과가없는데, mapper관련 설정이 잘못되어서
+조회된 결과가없는데, mapper관련 설정이 잘못되어서 나올 확률이 높다.
