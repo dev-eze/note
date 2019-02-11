@@ -15,3 +15,12 @@ CASE
 # A query was run and no Result Maps were found for the Mapped Statement 'mappename.id'.  
 It's likely that neither a Result Type nor a Result Map was specified.
 조회된 결과가없는데, mapper관련 설정이 잘못되어서 나올 확률이 높다.
+
+#Error updating database.  Cause: java.lang.NumberFormatException: For input string: "N"
+Mybatis 이용하여 mapper작성할 떄 if태그사용시 위왁 같은 에러가 발생할 때가 있었다.
+분명 String인데 왜 NumberFormatException이 날까.. 
+Mybatis에서의 NumberFormatException은 if문 비교에서 자주 발생한다.
+<if test="value != null and value = 'Y'">
+다음과 같이 비교 문자가 여러글자가 아닌, 한글자인 경우는 알파벳을 숫자로 인식하기때문에 그렇다.
+즉 하나의 문자를 ''로 감사면 숫자로 인식하게된다. 이럴땐 ""로 묶어주면된다.
+아미면 eq 'A'.toString()
