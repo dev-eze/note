@@ -2,5 +2,5 @@
 필드타입에 맞지않은 형식의 데이터를 입력한 경우 
 
 # Column count doesn't match value count at row 1
-컬럼 수가 일치하지 않다는 것으로 판단
+지정된 컬럼과 Value가 맞지 않을 경우에 발생
 
