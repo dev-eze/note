@@ -1,0 +1,11 @@
+            $(document).ready(function() {
+               
+                $("#searchBtn").keydown(function (event) {enterToSubmit(event)});
+                $("#detailOption").keydown(function (event) {enterToSubmit(event)});
+
+            });
+
+            // 엔터키로 폼전송
+            function enterToSubmit(event) {
+                if (event.keyCode == 13) $("#searchForm").submit();
+            }
