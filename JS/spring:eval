@@ -1,0 +1,2 @@
+<jsp:useBean id="now" class="java.util.Date" />
+<spring:eval expression="@file['site_url']" var="siteUrl"/>
