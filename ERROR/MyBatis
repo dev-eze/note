@@ -23,4 +23,5 @@ Mybatis에서의 NumberFormatException은 if문 비교에서 자주 발생한다
 <if test="value != null and value = 'Y'">
 다음과 같이 비교 문자가 여러글자가 아닌, 한글자인 경우는 알파벳을 숫자로 인식하기때문에 그렇다.
 즉 하나의 문자를 ''로 감사면 숫자로 인식하게된다. 이럴땐 ""로 묶어주면된다.
-아미면 eq 'A'.toString()
+<if test='value != null and value = "Y"'>
+아니면 eq 'A'.toString()
