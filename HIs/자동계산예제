@@ -1,0 +1,30 @@
+function equityHiddenFieldsUpdate(){
+   var candyCnt = getNumber("#candyCnt");
+   var candyCharge = getNumber("#sweetFrom #candyCharge-desert");
+  
+    if(validNumber(candy) && validNumber(candyCharge)){
+        var pay = candyCnt * candyCharge;
+        $("#sweetFrom #targetAmount").val($.number(pay));
+    }
+
+}
+
+
+function validNumber(number){
+   if(!number){
+      return false;
+   }
+   
+   if(isNaN(number) || number === Infinity){
+      return false;
+   }
+   return true;
+}
+
+function getNumber(selector){
+   var $elem = $(selector);
+   if($elem){
+      return $elem.val().replace(/,/gi, "");
+   }
+   return 0;
+}
