@@ -25,3 +25,6 @@ Mybatis에서의 NumberFormatException은 if문 비교에서 자주 발생한다
 즉 하나의 문자를 ''로 감사면 숫자로 인식하게된다. 이럴땐 ""로 묶어주면된다.
 <if test='value != null and value = "Y"'>
 아니면 eq 'A'.toString()
+
+
+#Error evaluating expression 'enumType.code eq "M"'. Cause: org.apache.ibatis.ognl.OgnlException: source is null for getProperty(null, "code")
