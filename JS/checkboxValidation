@@ -1,0 +1,32 @@
+$("input[name=candyType]:checked").val();
+
+$('#updateFrm input[name="candyType"]').val(candyType);
+
+ data: $("#updateFrm").serialize(),
+ 
+             if($("input[name=mealType]:checked").val() == 20) {
+              if (typeof $("input[name=subGroupType]:checked").val() == "undefined" ) {
+                alertify.alert("하위 카테고리를 선택하세요.");
+                document.getElementById('update-candyType-checkbox').focus();
+                return;
+              }
+            }
+            
+            if ("" == $("#name").val() || "" == $("#amount").val()) {
+                alertify.alert("내용을 입력하세요.");
+                return;
+            }
+            
+            if (typeof $("input[name=mealType]:checked").val() == "undefined" ) {
+                alertify.alert("음식 타입을 입력하세요.");
+                document.getElementById('update-mealType-checkbox').focus();
+                return;
+            }
+
+            if($("input[name=mealType]:checked").val() == 20) {
+              if (typeof $("input[name=candyType]:checked").val() == "undefined" ) {
+                alertify.alert("하위 카테고리를 선택하세요.");
+                document.getElementById('update-candyType-checkbox').focus();
+                return;
+              }
+            }            
