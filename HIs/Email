@@ -1,33 +1,24 @@
-  private URL getTemplateUrl(String templatePath) {
-    URL url = this.getClass().getClassLoader().getResource(templatePath);
-    return url;
-  }
-  
-  private String readFile(String path) throws IOException {
-   BufferedReader reader = null;
-   StringBuilder builder = new StringBuilder();
-  try {
-      reader = new BufferedReader(new InputStreamReader((new FileInputStream(new File(path))), "UTF-8"));
-      String line = null;
-      while ((line = reader.readLine()) != null) {
-        builder.append(line);
-      }
-    } catch (IOException ex) {
-      ex.printStackTrace();
-      throw ex;
-    } finally {
-      if (reader != null) {
-        try {
-          reader.close();
-        } catch (IOException ex) {
-        }
-      }
-    }
 
-    return builder.toString();
-  }
-  
-    public String getMessageMaping(Map<String, String> paramMap, String htmlText) {
+/**
+ * Mail Handler
+ */
+@Component
+@Slf4j
+public class MailHelper {
+
+  @Value("#{file['default_send_email']}")
+  private String default_send_email;
+
+  /**
+   * <pre>
+   * getMessageMaping
+   * 문자열 맵핑 후 html 반환
+   * <pre>
+   * @param paramMap
+   * @param htmlText
+   * @return
+   */
+  public String getMessageMaping(Map<String, String> paramMap, String htmlText) {
     if (paramMap == null) {
       return htmlText;
     }
@@ -36,8 +27,65 @@
     while (iterator.hasNext()) {
       String key = iterator.next();
       String value = paramMap.get(key);
+      if (value == null)
+        value = "";
       htmlText = htmlText.replace("#" + key + "#", value);
     }
 
     return htmlText;
   }
+
+  /**
+   * <pre>
+   * getTemplateUrl
+   * 템플릿 경로 가져오기
+   * <pre>
+   * @param templatePath
+   * @return
+   */
+  public URL getTemplateUrl(MailTemplate templatePath) {
+    return getTemplateUrl(templatePath.toString());
+  }
+
+  public URL getTemplateUrl(String templatePath) {
+    URL url = MailHelper.class.getClassLoader().getResource(templatePath);
+    return url;
+  }
+
+  /**
+   * <pre>
+   * readFile
+   * 파일 read
+   * <pre>
+   * @param path
+   * @return
+   * @throws IOException
+   */
+  public String readFile(String path) throws IOException {
+    BufferedReader reader = null;
+    StringBuilder builder = new StringBuilder();
+    try {
+      reader = new BufferedReader(
+              new InputStreamReader(
+                      (new FileInputStream(new File(path))
+                      ), "UTF-8"));
+      String line = null;
+      while ((line = reader.readLine()) != null) {
+        builder.append(line);
+      }
+
+    } catch (IOException ex) {
+      log.error("{}", ex);
+      throw ex;
+    } finally {
+      if (reader != null) {
+        try {
+          reader.close();
+        } catch (IOException ex) {
+          log.error("{}", ex);
+        }
+      }
+    }
+    return builder.toString();
+  }
+}
