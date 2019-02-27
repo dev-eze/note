@@ -89,3 +89,27 @@ public class MailHelper {
     return builder.toString();
   }
 }
+
+
+    public void sendEmail(String mailTemplateUrl, MailInfo mailInfo) {
+        if (mailInfo == null || StringUtils.isBlank(mailInfo.getEmail())) {
+            throw new IllegalStateException("메일 발송 과정에 필수파람정보가 없습니다. mailInfo: " + mailInfo);
+        }
+        try {
+            URL htmlUtl = mailHelper.getTemplateUrl(mailTemplateUrl);
+            String mailTemplate = mailHelper.readFile(htmlUtl.getFile());
+
+            HashMap<String,String> param = new HashMap<>();
+            param.put("이름", mailInfo.getName());
+
+            mailMessageService.reservationMail(
+                    MailMessageServiceInfo.builder()
+                    .title(mailHelper.getMappignTemplate(param, TEMPLATE_TITLE))
+                    .body(mailHelper.getMappignTemplate(param, mailTemplate))
+                    .toEmail(mailInfo.getEmail())
+                    .fromEmail(defaultFromEmail)
+                    .build());
+        } catch (Exception e) {
+            log.error("메일 발송 과정에 오류가 발생했습니다. error:{}-mailInfo:{}", e, mailInfo);
+        }
+    }
