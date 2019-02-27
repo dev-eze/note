@@ -1,0 +1,43 @@
+  private URL getTemplateUrl(String templatePath) {
+    URL url = this.getClass().getClassLoader().getResource(templatePath);
+    return url;
+  }
+  
+  private String readFile(String path) throws IOException {
+   BufferedReader reader = null;
+   StringBuilder builder = new StringBuilder();
+  try {
+      reader = new BufferedReader(new InputStreamReader((new FileInputStream(new File(path))), "UTF-8"));
+      String line = null;
+      while ((line = reader.readLine()) != null) {
+        builder.append(line);
+      }
+    } catch (IOException ex) {
+      ex.printStackTrace();
+      throw ex;
+    } finally {
+      if (reader != null) {
+        try {
+          reader.close();
+        } catch (IOException ex) {
+        }
+      }
+    }
+
+    return builder.toString();
+  }
+  
+    public String getMessageMaping(Map<String, String> paramMap, String htmlText) {
+    if (paramMap == null) {
+      return htmlText;
+    }
+
+    Iterator<String> iterator = paramMap.keySet().iterator();
+    while (iterator.hasNext()) {
+      String key = iterator.next();
+      String value = paramMap.get(key);
+      htmlText = htmlText.replace("#" + key + "#", value);
+    }
+
+    return htmlText;
+  }
