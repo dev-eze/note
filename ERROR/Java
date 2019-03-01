@@ -15,5 +15,5 @@ String <-> java.util.Date 컨버트간 타입미스매치 에러
 ${.변수명.객체값}주었더니 
 Neither BindingResult nor plain target object for bean name '' available as request attribute
 오류를 뱉었다.
-
+ 
 
