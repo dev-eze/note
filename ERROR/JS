@@ -1,2 +1,3 @@
  #Illegal use of &lt;when&gt;-style tag without &lt;choose&gt; as its direct parent
  el태그 잘못 사용한경우 예) c:choose문안 c:choose
+ 
