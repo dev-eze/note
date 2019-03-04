@@ -1,0 +1,25 @@
+    @Test
+    public void 배열문제() {
+        Integer[] arr = {1,2,3,4};
+        LinkedList<Integer> que = new LinkedList<>();
+        Integer k = 3;
+        Integer temp;
+
+        for(int i=0; i<arr.length; i++) {
+            que.add(arr[i]);
+        }
+
+        for(int i=1; i<=k; i++) {
+            temp = que.poll();
+            que.offer(temp);
+            log.info("결과"+i+": {}",que);
+        }
+
+        Integer[] resultArr = que.toArray(new Integer[que.size()]);
+        int[] resultIntArr = new int[resultArr.length];
+        for(int i=0; i<resultArr.length; i++) {
+            resultIntArr[i] = resultArr[i];
+        }
+
+        log.debug("결과{}", resultIntArr);
+    }
