@@ -1,0 +1,13 @@
+  @Builder
+  public MailMessageServiceInfo(String title, String body, String fromEmail, String toEmail, String bcEmail,
+                                String bccEmail, int reservation, String reservationDate, int messageNo, int priority) {
+    this.title = title;
+    this.body = body;
+    this.fromEmail = fromEmail;
+    this.toEmail = toEmail;
+    this.bcEmail = bcEmail;
+    this.bccEmail = bccEmail;
+    this.reservation = reservation;
+    this.reservationDate = reservationDate;
+    this.priority = priority;
+  }
