@@ -1,0 +1,6 @@
+
+#Field can be converted to a local variable
+This inspection searches for redundant class fields that can be replaced with local variables. If all local usages of a field are preceded by assignments to that field, the field can be removed and its usages replaced with local variables.
+
+
+특정 함수내에서만 사용되는 멤버변수에 대한 noti이다.
