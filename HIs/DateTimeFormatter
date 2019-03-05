@@ -1,0 +1,3 @@
+        DateTimeFormatter fmt = org.joda.time.format.DateTimeFormat.forPattern("yyyy-MM-dd");
+        DateTime result = DateTime.parse(baseParam.getPeriodFinishDate(), fmt);
+        condition.setAvailableFinishDate(result.toDate());
