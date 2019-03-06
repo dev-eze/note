@@ -4,3 +4,9 @@ This inspection searches for redundant class fields that can be replaced with lo
 
 
 특정 함수내에서만 사용되는 멤버변수에 대한 noti이다.
+
+#Required parameter '' is not present
+@RequestParam이나 기타 Prameter 값을 받아올 때 null이거나 Type이 맞지 않는 경우
+@RequestParam(value="name", required=false) String name
+required 속성의 default 값은 true 
+false값으로 사용하게 되면 해당 Parameter를 반드시 받지 않아도 됨.
