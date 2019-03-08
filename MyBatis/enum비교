@@ -1,0 +1,8 @@
+The only problem with enums is that you cannot compare them by name directly.
+For example you cannot write
+<if test="myEnum == 'SOME_ENUM_NAME'">
+You need to write
+<if test="myEnum.toString() == 'SOME_ENUM_NAME'">
+
+This is a problem with ONGL and not directly related to MyBatis.
+
