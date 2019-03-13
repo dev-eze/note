@@ -1,0 +1,163 @@
+암호화 알고리즘에는 크게 단방향 암호화와 양방향 암호화가 있다.
+
+
+
+단방향 암호화는 암호화 시키면 복호화 할 수 없는 걸
+
+말한다. 복원방법이 없으므로 원래 어떤 문자였는지 알 수가 없다.
+
+이러한 단방향 암호화는 패스워드정보에 주로 사용한다.
+
+
+
+양방향 암호화는 데이터 통신에 주로 사용한다.
+
+예를들어 은행거래나 결제시스템을 이용할 때
+
+중요한 정보들이 오고가는데, 그 정보들이 그냥 공개가 된다면
+
+개인정보보호법에 걸릴 뿐 아니라, 악용될 소지가 다분하기 때문에
+
+보안조치를 해줘야 한다.
+
+
+
+단방향 암호화에는 SHA1, SHA2(SHA244, SHA256, SHA512)등이 있고
+
+양방향 암호화에는 DES(3중 암호화), AES(AES128, AES192, AES256) 등이 있다.
+
+
+
+DES는 보안상 허점이 발견되어 권고하지 않는 알고리즘이다.
+
+md5 해시 함수 역시 보안상 허점이 발견되어 권고하지 않는다.
+
+
+
+SHA2 중에서도 SHA256 이상을 권장한다. 
+
+AES는 192이상을 권장한다. 
+
+(링크의 보안강도 참조)
+
+
+
+
+
+단방향 외에 대칭키, 비대칭키 알고리즘으로 구분한다.
+
+
+
+대칭키 알고리즘은 암호화 하는 키와 복호화 키가 동일하지만,
+
+비대칭키 알고리즘은 암호화 하는 키와 복호화 하는 키가 다르다.
+
+
+
+대칭키에 해당하는 것이 DES, AES 알고리즘이다.
+
+이외에 SEED나 ARIA라는 알고리즘도 존재한다.
+
+
+
+비대칭키에서는 공개키와 비밀키가 함께 쓰인다.
+
+암호화에는 공개키. 복호화에는 비밀키를 사용하는 것이다.
+
+대표적으로 RSA알고리즘이 있다.
+
+
+
+암호화 예제(AES256)
+
+
+package com.dd00oo.test.aes256;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+ 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+ 
+import org.apache.commons.codec.binary.Base64;
+ 
+/**
+ * 양방향 암호화 알고리즘인 AES256 암호화를 지원하는 클래스
+ */
+public class AES256Util {
+    private String iv;
+    private Key keySpec;
+ 
+    /**
+     * 16자리의 키값을 입력하여 객체를 생성한다.
+     * @param key 암/복호화를 위한 키값
+     * @throws UnsupportedEncodingException 키값의 길이가 16이하일 경우 발생
+     */
+    public AES256Util(String key) throws UnsupportedEncodingException {
+        this.iv = key.substring(0, 16);
+        byte[] keyBytes = new byte[16];
+        byte[] b = key.getBytes("UTF-8");
+        int len = b.length;
+        if(len > keyBytes.length){
+            len = keyBytes.length;
+        }
+        System.arraycopy(b, 0, keyBytes, 0, len);
+        SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
+ 
+        this.keySpec = keySpec;
+    }
+ 
+    /**
+     * AES256 으로 암호화 한다.
+     * @param str 암호화할 문자열
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws GeneralSecurityException
+     * @throws UnsupportedEncodingException
+     */
+    public String encrypt(String str) throws NoSuchAlgorithmException, GeneralSecurityException, UnsupportedEncodingException{
+        Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        c.init(Cipher.ENCRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
+        byte[] encrypted = c.doFinal(str.getBytes("UTF-8"));
+        String enStr = new String(Base64.encodeBase64(encrypted));
+        return enStr;
+    }
+ 
+    /**
+     * AES256으로 암호화된 txt 를 복호화한다.
+     * @param str 복호화할 문자열
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws GeneralSecurityException
+     * @throws UnsupportedEncodingException
+     */
+    public String decrypt(String str) throws NoSuchAlgorithmException, GeneralSecurityException, UnsupportedEncodingException {
+        Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        c.init(Cipher.DECRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
+        byte[] byteStr = Base64.decodeBase64(str.getBytes());
+        return new String(c.doFinal(byteStr), "UTF-8");
+    }
+}
+
+
+
+
+
+
+
+
+참조
+
+암호화, 해시 그리고 인코딩 - 암호화 알고리즘과 보안강도를 잘 정리해 두었다.
+
+암호 알고리즘 및 키 길이 이용 안내서 (개정판 재중) - KISA  암호이용활성화 사이트
+
+암호화 소스 예제
+
+라이브러리(jar)파일 링크
+
+[웹툰03] SSL이란 무엇인가? 1/2 - 보안에 관한 웹툰
+
+[블로그] https://dd00oo.tistory.com
