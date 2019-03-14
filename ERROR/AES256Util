@@ -1,0 +1,4 @@
+Input length must be multiple of 16 when decrypting with padded cipher
+#암호화된 키가 온전하게 넘어 오지 않아서 발생했던 이슈. 직설적인 표현으로는 16진수가 아니라는 에러이다.
+나의 경우 front에서 +기호를 공백으로 치환해서 서버에 보내줘서 에러가 났다.
+
