@@ -1,5 +1,0 @@
-#; Parameter index out of range (1 > number of parameters, which is 0
-
-"" -> ''
-param 개수 불일치
-() -> {}
