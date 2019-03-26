@@ -1,0 +1,2 @@
+<spring:eval expression="@file['site_url']" var="siteUrl"/> > ${}
+<spring:eval expression=" @file['site_url'] " /> 직접사용 
