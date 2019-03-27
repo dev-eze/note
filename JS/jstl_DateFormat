@@ -1,0 +1,60 @@
+JSTL API : http://java.sun.com/products/jsp/jstl/1.1/docs/tlddocs/index.html 
+
+ 
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+- JSP 상단에 추가해야 하는 태그 라이브러리
+
+ 
+
+fmt:parseDate : String 형을 받아서 워하는 포멧으로 자료형을 Date 형태로 변경 시켜 준다.
+
+fmt:formatDate : Date 형을 받아서 원하는 포멧으로 날짜 형태를 변경시켜 준다.
+
+ 
+
+ex)
+
+<fmt:parseDate value="${applDt}" var="dateFmt" pattern="yyyyMMdd"/>
+<fmt:formatDate value="${dateFmt}" pattern="yyyy-MM-dd"/>
+
+ 
+
+20081113 이라는 String 형태의 날짜 데이터가 존재한다고 가정하고
+
+이 String 형태의 날짜를 2008-11-13 으로 변경하고 싶을 경우 위의 예 처럼 사용하면 된다.
+
+그 외에도 2008. 11. 13 이런 식으로도 변경도 가능하다. (자신의 입맛에 맛게 변경하여 사용하도록 하자.)
+
+ 
+
+<fmt:parseDate value="${applDt}" var="dateFmt" pattern="yyyyMMdd"/>
+
+ 
+
+formatDate 는 Date 형태의 자료형만을 받아 변경시키도록 되어 있다. 즉 String 형태의 자료를 Date 형태로
+
+변환시켜 줘야 할 필요가 있는데 이때 사용하는 태그가 fmt:parseDate 이다.
+
+ 
+
+1. value 속성에는 넘어오는 파라메터(변환하고자 하는 String)의 이름을 적고
+
+2. var 에는 fmt:formatDate 에서 사용될 변수 이름을 적어주도록 하자.
+
+3. pattern 에는 value 속성에 들어가는 String 형태의 자료가 어떤 형태로 포멧되어 있는것인지를 지정해야 한다.
+
+   즉, 넘어온 String 형태의 자료가 20081113 과 같이 포멧되어 있는 상태라면 yyyyMMdd 와 같이 적어준다.
+
+   2008-11-13 과 같이 포멧되어 있는 상태라면 yyyy-MM-dd 와 같이 적어주면 된다.
+
+ 
+
+<fmt:formatDate value="${dateFmt}" pattern="yyyy-MM-dd"/>
+
+ 
+
+1. value 에는 parseDate 에서 var 속성뒤 적은 변수명을 적어주도록 한다.
+
+2. pattern 에는 자신이 원하는 포멧 형식을 적어주면 된다. (yyyy년 MM월 dd일 과 같이도 사용이 가능하다.)
