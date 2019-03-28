@@ -21,3 +21,6 @@ System.out.println("시작날짜로 부터 3개월 이후  : " + LocalDate.parse
 #string > dstetime
 
 datetimeformatter 
+
+#현재연도 가져오기
+Integer year = LocalDate.now().getYear();
