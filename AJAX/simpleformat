@@ -1,4 +1,6 @@
-                    $.ajax({
+ [client]
+ 
+ $.ajax({
                         url: '/web/board/tempSave',
                         type: 'POST',
                         data: $("#frm").serialize(),
@@ -27,7 +29,8 @@
                         }
                     });
                     
-                    
+  [server]
+  
   @RequestMapping(value="board/save/{title}", produces="text/plain;charset=UTF-8")
   @ResponseBody
   public String save(@PathVariable("title") String title) throws Exception {
