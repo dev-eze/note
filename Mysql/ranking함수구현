@@ -1,0 +1,26 @@
+MySQL은 ranking 함수가 없다. 그래서 row의 순위 값을 구할려면 variable를 사용하거나 count를 사용한 sub query를 사용해서 구하는 방식이 일반적으로 사용되고 있다.
+
+Variable를 사용해서 순위 값 구하기
+SELECT
+  id,
+  value,
+  ranking
+FROM (
+  SELECT
+    t.id,
+    t.value,
+    @rownum := @rownum + 1 AS ranking
+  FROM TABLE t
+  JOIN (SELECT @rownum := 0) r
+  ORDER BY t.value
+)
+
+
+Count와 Sub Query를 사용해서 순위 값 구하기
+SELECT
+  t.id,
+  (SELECT COUNT(*) FROM table WHERE value <= t.value) AS ranking,
+  t.value
+FROM table t
+WHERE t.value = 'value to get'
+Variable을 사용해서 순위값을 구하는건 전체 row의 순위 값을 구할때 더 적합하고 count와 sub query를 사용해서 순위 값을 구하는것은 어떠한 특정 row의 순위 값을 구하는데 더 적합하다.
