@@ -1,0 +1,20 @@
+function sendPress(stageCode){
+        alertify.confirm("하겠습니까? \n",
+            function(e) {
+                if(e) {
+                    $.ajax({
+                        url: '/com/study/send',
+                        type: 'POST',
+                        data: {
+                            id: ${id},
+                            stage: stageCode,
+                            status: 'status',
+                        },
+                        success: function(jsonObj) {
+                            ModSuccess(jsonObj);
+                        }
+                    });
+                }
+            }
+        );
+    }
