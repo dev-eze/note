@@ -1,0 +1,7 @@
+LIKE CONCAT('%',#{searchText},'%')
+
+(CASE
+				WHEN TO_DAYS(NOW()) - TO_DAYS(Registered) <![CDATA[<]]> N THEN FALSE
+				WHEN TO_DAYS(NOW()) - TO_DAYS(Registered) <![CDATA[>=]]> N THEN TRUE
+				ELSE 0
+			END) AS dateStatus
