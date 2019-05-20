@@ -1,5 +1,10 @@
+        #mapper xml
         <if test="code != null and code.length > 0">
             AND code IN (<foreach collection="code" item="a" separator=",">#{a}</foreach>)
         </if>
         
+        #vo
         String [] code;
+        
+        #jsp
+        <label><form:checkbox path="searchParam.isSuccess" value="0" />펀딩마감 (실패)</label>
