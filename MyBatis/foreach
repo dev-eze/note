@@ -1,0 +1,5 @@
+        <if test="code != null and code.length > 0">
+            AND code IN (<foreach collection="code" item="a" separator=",">#{a}</foreach>)
+        </if>
+        
+        String [] code;
