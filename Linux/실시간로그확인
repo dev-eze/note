@@ -1,0 +1,14 @@
+tail -f 파일경로
+
+
+
+ex) tail -f /var/log/nginx/error.log
+
+Nginx의 오류 로그 실시간 확인
+
+
+
+ex) tail -f  /var/log/nginx/access.log
+
+Nginx의 서버 접근 기록 실시간 모니터링
+
