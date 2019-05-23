@@ -1,28 +1,38 @@
-                              <select id="아이디" name="네임">
+ <form id="publicationManagerForm">
+                          <input type="hidden" name="campaignId" value="${campaignId}"/>
+                          <input type="hidden" name="managerType" value="PUBLICATION"/>
+                          <input type="hidden" name="newManagerUserName" />
+                          <span><label>발행</label></span>
+                          <span>
+                              <select id="publicationManager" name="managerUserId">
                                   <option>선택</option>
-                                  <c:forEach items="${List}" var="item">
-                                      <option value="${item.id}" <c:if test="${item.id eq campaign.id}">selected</c:if>>${item.name}</option>
+                                  <c:forEach items="${publicationManagerList}" var="item">
+                                      <option value="${item.managerUserId}" <c:if test="${item.managerUserId eq campaign.publicationManagerUserId}">selected</c:if>>${item.managerName}</option>
                                   </c:forEach>
                                   <option value="0">신규입력</option>
                               </select>
-                              
-     $("#contentsManager").change(function(){
+                          </span>
+                          <span><button id="publicationManagerBtn" type="button" class="btn btn-primary btn-xs">저장</button></span>
+                      </form>
+                      
+                      
+    $("#publicationManager").change(function(){
         var $this = $(this);
-        var $newManagerUserName = $("#폼네임 input[name='이름']");
+        var $newManagerUserName = $("#publicationManagerForm input[name='newManagerUserName']");
         if($this.val() == "0"){//신규입력시
-            var 이름 = prompt("신규 입력할 사용자의 이메일 계정을 입력하세요.");
-            if(!이름){
+            var managerUserName = prompt("신규 입력할 사용자의 이메일 계정을 입력하세요.");
+            if(!managerUserName){
                 $(this).find("option:eq(0)").prop("selected", true);
                 return;
             }
-            $아이디.val(이름);
+            $newManagerUserName.val(managerUserName);
 
             $.ajax({
-                url: '/~',
+                url: '/web/equity/campaign/createManager',
                 type: 'POST',
-                data: $("#폼네임").serialize(),
+                data: $("#publicationManagerForm").serialize(),
                 success: function(jsonObj) {
-                    successProcess(jsonObj);
+                    refreshCampaignDetailSuccess(jsonObj);
                 }
             });
 
