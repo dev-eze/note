@@ -3,3 +3,7 @@
 ON DUPLICATE KEY UPDATE a=a,b=b
 
 pk가 ai경우는 서비스단에서 처리할 수 밖에
+
+INSERT INTO NAME(VALUE1, VALUE2, VALUE3, Updated)
+VALUES(#{VALUE1}, #{VALUE2}, #{VALUE3}, NOW())
+ON DUPLICATE KEY UPDATE 업데이트할컬럼 = #{업데이트할컬럼밸류}, Updated = NOW()
