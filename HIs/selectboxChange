@@ -1,0 +1,31 @@
+                              <select id="아이디" name="네임">
+                                  <option>선택</option>
+                                  <c:forEach items="${List}" var="item">
+                                      <option value="${item.id}" <c:if test="${item.id eq campaign.id}">selected</c:if>>${item.name}</option>
+                                  </c:forEach>
+                                  <option value="0">신규입력</option>
+                              </select>
+                              
+     $("#contentsManager").change(function(){
+        var $this = $(this);
+        var $newManagerUserName = $("#폼네임 input[name='이름']");
+        if($this.val() == "0"){//신규입력시
+            var 이름 = prompt("신규 입력할 사용자의 이메일 계정을 입력하세요.");
+            if(!이름){
+                $(this).find("option:eq(0)").prop("selected", true);
+                return;
+            }
+            $아이디.val(이름);
+
+            $.ajax({
+                url: '/~',
+                type: 'POST',
+                data: $("#폼네임").serialize(),
+                success: function(jsonObj) {
+                    successProcess(jsonObj);
+                }
+            });
+
+
+        }
+    });
