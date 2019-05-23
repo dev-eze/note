@@ -1,0 +1,35 @@
+    $("#btn").click(function(){
+        var $name = $("#name");
+        if($name.val() == '선택'){
+            alertify.alert("선택해주세요!");
+            return;
+        }
+        $.ajax({
+            url: '/~',
+            type: 'POST',
+            data: $("#FORMNAME").serialize(),
+            success: function(jsonObj) {
+                refresh(jsonObj);
+            }
+        });
+    });
+
+function refresh(result){
+    if("200" == result.code && result.success == "true"){
+        alert("저장 되었습니다.");
+        refresh('${id}');
+    } else {
+        alert("저장에 실패하였습니다. ");
+        console.error(result.message); //console.log(err);
+    }
+}
+    
+     //엔터키로 폼전송
+    function enterToSubmit(event) {
+      if (event.keyCode == 13) $("#searchForm").submit();
+    }
+    
+    //get
+       function getHtml(id) {
+        return ajax.get('/web/Details?Id=' + id);
+    }
