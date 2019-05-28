@@ -1,0 +1,91 @@
+1. Git 설치하기
+
+먼저 Git이 설치되어 있어야 한다. 
+
+(https://git-scm.com/)  여기에서 OS환경에 맞는 것을 설치해주면 된다.
+
+
+
+
+
+2. Repository 추가
+
+자신의 GitHub에 들어가 repository를 추가한다.
+
+
+
+
+
+3. git init
+
+터미널 창에서 해당 프로젝트 경로로 들어가
+
+$ git init
+들어간 후에 git init 명령어로 .git 디렉토리를 생성하고 로컬 저장소로 사용되도록 설정한다.
+
+
+
+
+4. git add .
+
+$ git add .
+이때 .를 찍어주어야 전체파일이 업로드 된다.
+
+정상적으로 init 명령어가 실행 된 후 add 명령어로 프로젝트 파일들을 Staging area로 add 하여 준다.
+
+
+
+
+
+5. git commit
+
+$ git commit -m "first commit"
+""안에는 적고 싶은 메시지를 적으면 함께 올라간다. 
+
+git이 add 명령어로 실행한 파일들을 인식하면 commit 명령어로 버전관리를 하면 된다.
+
+SVN, CVS 명령어인 commit와 다르게 로컬 저장소(자기 PC)에  저장하는 것이다.
+
+
+
+
+
+6. GitHub repository 주소 복사
+
+GitHub에서 추가한 repository의 주소를 복사한다.
+
+
+
+
+
+7. git remote
+
+>$ git remote add origin "repository 링크주소"
+복사한 링크를 ""에 붙인다. ""는 뺄것.
+
+
+
+
+
+ fatal: remote origin already exists 에러
+이때가 발생할 경우가 있다.
+
+
+
+$ git remote rm origin 
+명령어를 입력하면 이미 remote origin 이 존재하기 때문에 지워줘야한다.
+
+
+
+
+
+8. git push
+
+$ git push -u origin master
+파일을 저장하는 명령어를 입력한다.
+
+
+
+
+
+9. 패스워드 입력! (생략)
