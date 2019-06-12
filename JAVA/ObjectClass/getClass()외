@@ -1,3 +1,25 @@
+리플렉션 : Class 객체를 이용하면 클래스의 생성자, 필드, 메서드 정보를 알아낼 수 있습니다.  
+Class 객체는 리플렉션을 위해 getDeclaredConstructors(), getDeclaredFields(), getDeclaredMethods() 를 제공합니다.
+
+Constructor[] constructors = clazz.getDeclaredConstructors();
+
+Field[] fields = clazz.getDeclaredFields();
+
+Method[] methods = clazz.getDeclaredMethods();
+
+
+
+위 메서드는 각각 생성자 배열, 필드 배열, 메서드 배열을 리턴합니다. 
+
+Constructor, Field, Method 클래스는 java.lang.reflect 패키지에 소속되어 있습니다.
+
+getDeclaredFields(), getDeclaredMethods()는 클래스에 선언된 멤버만 가져옵니다.
+
+상속된 멤버도 얻고 싶다면 getFields(), getMethods() 를  이용하면 됩니다. 
+
+getFields(), getMethods()는 public 멤버만 가져옵니다. 
+
+
 * getClass() : 객체가 속하는 클래스의 정보를 알아내는 메소드이다.
 
 * getName() : 클래스의 이름을 리턴하는 메소드이다.
