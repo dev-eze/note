@@ -1,0 +1,10 @@
+#java.rmi.server.ExportException: Port already in user: 1099;
+
+기존에 사용중인 1099포트가 정상적으로 종료되지 않고 재시작할 경우 위와 같은 오류가 발생한다.
+이 경우에는 해당 포트를 찾아, 강제종료후 실행하면 된다.
+터미널에 접속하여 (iterm추천) 
+
+lsof -i :포트번호
+kill -9 PID
+
+후 재시작하면 deploy가 정상적으로 된다.
