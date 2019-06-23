@@ -4,7 +4,7 @@ public enum Type {
     @Getter
     private String code;
 
-    MemberType(String code) {
+    Type(String code) {
         this.code = code;
     }
 
