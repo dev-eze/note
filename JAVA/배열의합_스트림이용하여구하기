@@ -1,0 +1,6 @@
+#배열의합_스트림이용하여구하기
+int[] arr = {10,20,30,40,50};
+int sum = IntStream.of(arr).sum();
+System.out.println("arr배열의합 " + sum);
+
+import java.util.stream.*;
