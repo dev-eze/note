@@ -1,0 +1,136 @@
+▶MySQL 시간 더하기, 빼기 (DATE_ADD, DATE_SUB 함수)
+
+
+
+
+▶설명
+MySQL에서 특정 시간을 기준으로 더하거나, 빼야 하는 경우가 있습니다.
+
+이 때 사용하는 함수가 DATE_ADD와 DATE_SUB입니다.
+
+DATE_ADD는 기준 날짜에 입력된 기간만큼을 더하는 함수고,
+
+DATE_SUB는 기준 날짜에 입력된 기간만큼을 빼는 함수입니다.
+
+
+
+▶사용법
+시간 더하기
+1
+DATE_ADD(기준 날짜, INTERVAL)
+시간 빼기
+1
+DATE_SUB(기준 날짜, INTERVAL)
+
+
+
+▶DATE_ADD 예제 쿼리 (Example Query)
+현재 시간
+2018-01-11 12:00:00
+
+
+현재 시간에 1초 더하기
+쿼리
+1
+SELECT DATE_ADD(NOW(), INTERVAL 1 SECOND);
+결과
+2018-01-11 12:00:01
+
+
+현재 시간에 1분 더하기
+쿼리
+1
+SELECT DATE_ADD(NOW(), INTERVAL 1 MINUTE);
+결과
+2018-01-11 12:01:00
+
+
+현재 시간에 1시간 더하기
+쿼리
+1
+SELECT DATE_ADD(NOW(), INTERVAL 1 HOUR);
+결과
+2018-01-11 13:00:00
+
+현재 시간에 1일 더하기
+쿼리
+1
+SELECT DATE_ADD(NOW(), INTERVAL 1 DAY);
+결과
+2018-01-12 12:00:00
+
+현재 시간에 1달 더하기
+쿼리
+1
+SELECT DATE_ADD(NOW(), INTERVAL 1 MONTH);
+결과
+2018-02-11 12:00:00
+
+현재 시간에 1년 더하기
+쿼리
+1
+SELECT DATE_ADD(NOW(), INTERVAL 1 YEAR);
+결과
+2019-01-11 12:00:00
+
+현재 시간에 1년 빼기
+쿼리
+1
+SELECT DATE_ADD(NOW(), INTERVAL -1 YEAR);
+결과
+2017-01-11 12:00:00
+
+▶DATE_SUB 예제 쿼리 (Example Query)
+현재 시간
+2018-01-11 12:00:00
+
+현재 시간에 1초 빼기
+쿼리
+1
+SELECT DATE_SUB(NOW(), INTERVAL 1 SECOND);
+결과
+2018-01-11 11:59:59
+
+
+현재 시간에 1분 빼기
+쿼리
+1
+SELECT DATE_SUB(NOW(), INTERVAL 1 MINUTE);
+결과
+2018-01-11 11:59:00
+
+
+현재 시간에 1시간 빼기
+쿼리
+1
+SELECT DATE_SUB(NOW(), INTERVAL 1 HOUR);
+결과
+2018-01-11 11:00:00
+
+현재 시간에 1일 빼기
+쿼리
+1
+SELECT DATE_SUB(NOW(), INTERVAL 1 DAY);
+결과
+2018-01-10 12:00:00
+
+현재 시간에 1달 더하기
+쿼리
+1
+SELECT DATE_SUB(NOW(), INTERVAL 1 MONTH);
+결과
+2017-01-11 12:00:00
+
+현재 시간에 1년 빼기
+쿼리
+1
+SELECT DATE_SUB(NOW(), INTERVAL 1 YEAR);
+결과
+2017-01-11 12:00:00
+
+현재 시간에 1년 더하기 (DATE_SUB)
+쿼리
+1
+SELECT DATE_SUB(NOW(), INTERVAL -1 YEAR);
+결과
+2018-01-11 12:00:00
