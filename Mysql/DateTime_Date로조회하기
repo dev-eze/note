@@ -1,0 +1,9 @@
+#DateTime으로 되어있는 컬럼을 날짜로 조회하려면 어떻게 해야할까?
+1) DATE()함수
+2) BETWEEN 연산자
+
+Registered(DateTime,등록일)이 금일인 데이터를 조회하려면,
+Registered = CURDATE()? (X)
+DATE(Registered) = CURDATE()처럼 DATE()함수를 이용하면된다. 
+또는 BETWEEN연산자를 이용하면 된다. 
+WHERE DATE(Registered) BETWEEN CURDATE()  AND CURDATE().
