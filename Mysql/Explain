@@ -1,0 +1,22 @@
+- table : 테이블 명
+- type : 조인의 타입
+    system : 테이블이 하나의 레코드만 가지는 경우
+    const : 테이블에 조건을 만족하는 레코드가 하나일 때, 상수 취급
+    eq_ref : 인덱스가 UNIQUE이거나 PRIMARY KEY인 경우의 조인으로 const를 제외한 조인 중 가장 좋은 형태
+    ref : eq_ref와 다른 점은 UNIQUE가 아닐 경우 사용한다는 것.
+    range : 조건에 레코드의 범위가 주어진 조인.
+    index : all 형태와 비슷하며, 인덱스를 사용한다.
+    all : 모든 레코드를 스캔한다.
+- possible_keys : 테이블에서 사용 할 수 있는 키(인덱스)
+- key : possible_keys에 나온 키 중에서 실제로 사용한 키
+- key_len : 키의 길이
+- ref : 인덱스를 사용할 때 어떤 컬럼과 조건이 맞아야 하는지
+- rows : 조건을 만족하는 레코드를 찾기 위해 몇개의 레코드를 검사해야 하는지(이게 얼마나 가져와서 비교하는지...)
+- Extra : 부가적인 정보
+    distinct : 조건을 만족하는 레코드를 찾았을 때 같은 조건을 만족하는 또 다른 레코드가 있는지 검사하지 않음.
+    not exist : left join 조건을 만족하는 하나의 레코드를 찾았을 때 다른 레코드의 조합은 더 이상 검사하지 않는다.
+    range checked for each record : 최적의 인덱스가 없는 차선의 인덱스를 사용한다는 의미.
+    using filesort : mysql이 정렬을 빠르게 하기 위해 부가적인 일을 한다.
+    using index : select 할때 인덱스 파일만 사용
+    using temporary : 임시 테이블을 사용한다. order by 나 group by 할때 주로 사용
+    where used : 조건을 사용한다는 의미.
