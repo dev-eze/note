@@ -134,3 +134,27 @@ SELECT DATE_SUB(NOW(), INTERVAL 1 YEAR);
 SELECT DATE_SUB(NOW(), INTERVAL -1 YEAR);
 결과
 2018-01-11 12:00:00
+
+
+▶MYSQL DATEDIFF, TIMEDIFF 를 이용한 날짜 및 시간 계산
+
+
+
+▶날짜차이 계산: DATEDIFF(expr1, expr2)
+
+SELECT DATEDIFF('2019-05-14','2019-05-18') AS DiffDate
+
+
+
+▶시간차이 계산: TIMESTAMPDIFF(시간표현단위, 시작체크시간, 종료체크시간)
+
+SELECT TIMESTAMPDIFF(minute, '2019-05-14 01:01', '2019-05-15 23:59') AS time_diff;
+
+
+▶시간표현단위: second, minute, hour, day, week, month, quarter, year
+
+
+DATE 포멧으로 변경 후에 조회하면 그결과가 더 정확하다.
+>문자열에서 날짜형으로 데이터 전환: date_format
+
+SELECT TIMESTAMPDIFF(minute, date_format('2019-05-14 01:01', '%Y-%m-%d %H:%i'), date_format('2019-05-14 23:59', '%Y-%m-%d %H:%i')) AS time_diff;
