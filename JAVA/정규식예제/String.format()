@@ -1,0 +1,13 @@
+#JavaUtil사용
+  
+public static String format(String format, Object... args) {
+ return new Formatter().format(format, args).toString();
+}
+   
+   
+예제)
+String detailMessage = String.format("대상 %d 건, 발급 %d 건, 발급 취소 %d 건, 지연 처리 %d 건",
+            total,
+            issued,
+            canceled,
+            delays);
