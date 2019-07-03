@@ -1,3 +1,10 @@
+
+Unsatisfied dependency expressed through method 'setJob' parameter 0; 
+nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: 
+No qualifying bean of type 'org.springframework.batch.core.Job' available: expected at least 1 
+bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.
+Qualifier(value="")}
+
 @SpringBootTest(classes = { AppTest.BatchTestConfig.class, MyJobConfig.class })
 
 For spring Batch 4.1.x or above Version We can use @SpringBatchTest annotation that will automatically inject jobLauncherTestUtils , check sample example for more details Here
