@@ -1,0 +1,1 @@
+@SpringBootTest(classes = { AppTest.BatchTestConfig.class, MyJobConfig.class })
