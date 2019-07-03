@@ -1,1 +1,16 @@
 @SpringBootTest(classes = { AppTest.BatchTestConfig.class, MyJobConfig.class })
+
+For spring Batch 4.1.x or above Version We can use @SpringBatchTest annotation that will automatically inject jobLauncherTestUtils , check sample example for more details Here
+
+This is how you can created if u cant upgrade to 4.1.x or above
+
+@Bean
+     public JobLauncherTestUtils getJobLauncherTestUtils(){
+
+            return new JobLauncherTestUtils() {
+                @Override
+                @Autowired
+                public void setJob(@Qualifier("myjobname") Job job) {
+                    super.setJob(job);
+                }
+            };
