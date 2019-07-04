@@ -42,14 +42,9 @@ mysql> ALTER TABLE tablename MODIFY a CHAR(1) NOT NULL;
 mysql> TRUNCATE TABLE tablename;
 
 #여러커럼 한번에 추가하기
-mysql> 
-ALTER TABLE tablename ADD(
-컬럼네임1 컬럼속성 null여부 COMMENT '코멘트',
-컬럼네임2 컬럼속성 null여부 COMMENT '코멘트',
-컬럼네임3 컬럼속성 null여부 COMMENT '코멘트',
-컬럼네임4 컬럼속성 null여부 COMMENT '코멘트',
-컬럼네임5 컬럼속성 null여부 COMMENT '코멘트'
-);
+ALTER TABLE `데이터명`.`tablename` 
+ADD COLUMN `a` VARCHAR(45) NULL COMMENT 'coment' AFTER `Description`,
+ADD COLUMN `b` VARCHAR(45) NULL COMMENT 'coment' AFTER `a`;
 
 #테이블 생성
 CREATE TABLE tablename
