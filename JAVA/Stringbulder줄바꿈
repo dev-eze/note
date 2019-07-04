@@ -1,0 +1,3 @@
+\n
+System.getProperty("line.separator")
+System.lineSeparator()
