@@ -1,0 +1,42 @@
+#이름 바꾸기
+mysql> ALTER TABLE tablename RENAME rename;
+
+
+#컬럼 속성 수정
+mysql> ALTER TABLE tablename MODIFY colname INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
+
+ALTER TABLE tablename MODIFY 컬럼이름 컬럼속성
+
+#컬럼 이름 바꾸기
+sysql> ALTER TABLE tablename CHANGE colname newColName INT NOT NULL AUTO_INCREMENT;
+CHANGE는 컬럼 속성,이름을 변경한다.
+
+#컬럼 추가
+mysql> ALTER TABLE tablename ADD newColName varchar(45);
+
+ALTER TABLE tablename ADD 컬럼이름 컬럼속성
+
+#컬럼 삭제
+mysql> ALTER TABLE tablename DROP colname;
+
+
+#특정 컬럼 뒤에 새로운 컬럼 추가
+mysql> ALTER TABLE tablename ADD newcol varchar(45) AFTER num;
+
+num 컬럼 뒤에 newcol 컬럼 추가.
+
+#기존 컬럼을 지우고 맨 앞에 컬럼 추가
+mysql> ALTER TABLE tablename DROP newcol, ADD newcol VARCHAR(45) FIRST;
+맨 앞에 추가하기위해 FIRST를 사용하였다.
+
+#PRIMARY KEY 속성 삭제
+mysql> ALTER TABLE tablename DROP PRIMARY KEY;
+
+
+#이미 PRIMARY KEY인 컬럼의 속성을 바꿀 때
+PRIMARY KEY 속성은 지정하지 말고, NOT NULL 속성을 함께 지정해 주면 기존 PRIMARY KEY 속성은 그대로 남은 상태로 컬럼의 속성을 변경할 수 있다.
+mysql> ALTER TABLE tablename MODIFY a CHAR(1) NOT NULL;
+
+
+#테이블의 내용 전체 삭제(트랜잭션에 의해 복구될 수 없다.)
+mysql> TRUNCATE TABLE tablename;
