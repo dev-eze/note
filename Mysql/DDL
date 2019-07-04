@@ -40,3 +40,24 @@ mysql> ALTER TABLE tablename MODIFY a CHAR(1) NOT NULL;
 
 #테이블의 내용 전체 삭제(트랜잭션에 의해 복구될 수 없다.)
 mysql> TRUNCATE TABLE tablename;
+
+#여러커럼 한번에 추가하기
+mysql> 
+ALTER TABLE tablename ADD(
+컬럼네임1 컬럼속성 null여부 COMMENT '코멘트',
+컬럼네임2 컬럼속성 null여부 COMMENT '코멘트',
+컬럼네임3 컬럼속성 null여부 COMMENT '코멘트',
+컬럼네임4 컬럼속성 null여부 COMMENT '코멘트',
+컬럼네임5 컬럼속성 null여부 COMMENT '코멘트'
+);
+
+#테이블 생성
+CREATE TABLE tablename
+(
+    `컬럼네입1` 컬럼속성  NOT NULL/NULL AUTO_INCREMENT COMMENT 'auto increment',
+    `컬럼네입2` 컬럼속성  NOT NULL AUTO_INCREMENT COMMENT '코멘트',
+    `컬럼네입3` 컬럼속성  NOT NULL AUTO_INCREMENT COMMENT '코멘트',
+    `컬럼네입4` 컬럼속성  NOT NULL AUTO_INCREMENT COMMENT '코멘트',
+    `컬럼네입5` 컬럼속성  NOT NULL AUTO_INCREMENT COMMENT '코멘트',
+    PRIMARY KEY (Seq)
+);
