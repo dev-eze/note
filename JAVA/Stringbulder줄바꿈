@@ -1,3 +1,5 @@
 \n
 System.getProperty("line.separator")
 System.lineSeparator()
+
+을 사용해도 안되길래, \\n을해주니 줄바꿈이 잘 되었다.
