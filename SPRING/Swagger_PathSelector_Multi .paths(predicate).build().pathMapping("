@@ -1,0 +1,48 @@
+@Configuration
+public class SwaggerConfig {
+  @Bean
+  public Docket api() {
+    return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
+        .paths(predicate).build().pathMapping("/")
+        .directModelSubstitute(LocalDate.class, String.class).genericModelSubstitutes(ResponseEntity.class)
+        .enableUrlTemplating(false).useDefaultResponseMessages(false)
+        .globalResponseMessage(RequestMethod.GET, Arrays.asList(
+            new ResponseMessageBuilder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).build(),
+            new ResponseMessageBuilder().code(HttpStatus.BAD_REQUEST.value())
+                .message(HttpStatus.BAD_REQUEST.getReasonPhrase()).build(),
+            new ResponseMessageBuilder().code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()).build()))
+        .globalResponseMessage(RequestMethod.POST, Arrays.asList(
+            new ResponseMessageBuilder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).build(),
+            new ResponseMessageBuilder().code(HttpStatus.BAD_REQUEST.value())
+                .message(HttpStatus.BAD_REQUEST.getReasonPhrase()).build(),
+            new ResponseMessageBuilder().code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()).build()))
+        .globalResponseMessage(RequestMethod.PUT, Arrays.asList(
+            new ResponseMessageBuilder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).build(),
+            new ResponseMessageBuilder().code(HttpStatus.BAD_REQUEST.value())
+                .message(HttpStatus.BAD_REQUEST.getReasonPhrase()).build(),
+            new ResponseMessageBuilder().code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()).build()))
+        .globalResponseMessage(RequestMethod.DELETE, Arrays.asList(
+            new ResponseMessageBuilder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).build(),
+            new ResponseMessageBuilder().code(HttpStatus.BAD_REQUEST.value())
+                .message(HttpStatus.BAD_REQUEST.getReasonPhrase()).build(),
+            new ResponseMessageBuilder().code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()).build()))
+        .pathProvider(new AbstractPathProvider() {
+          @Override
+          protected String applicationPath() {
+            return "/web";
+          }
+
+          @Override
+          protected String getDocumentationPath() {
+            return "/web";
+          }
+        })
+        ;
+  }
+
+    com.google.common.base.Predicate<String> predicate = Predicates.or(PathSelectors.ant("/*/api/**"), PathSelectors.ant("/other/api/**"));
+}
