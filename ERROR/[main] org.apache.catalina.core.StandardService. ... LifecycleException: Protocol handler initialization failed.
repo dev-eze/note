@@ -1,0 +1,2 @@
+#[main] org.apache.catalina.core.StandardService. ... LifecycleException: Protocol handler initialization failed.
+톰캣 포트 충돌 에러
