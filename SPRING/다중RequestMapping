@@ -1,0 +1,6 @@
+mappign할 value 값을 배열{}로 주어 처리할 수 있다.
+
+ex)
+@RequestMapping(value = { "/url1", "/url2" })
+
+
