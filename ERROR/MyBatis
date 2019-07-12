@@ -31,5 +31,5 @@ Mybatis에서의 NumberFormatException은 if문 비교에서 자주 발생한다
 
 
 #org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.ExecutorException: A query was run and no Result Maps were found for the Mapped Statement
-resultType, parameterType, namespace등이불일치한경우발생
-#Error evaluating expression 'enumType.code eq "M"'. Cause: org.apache.ibatis.ognl.OgnlException: source is null for getProperty(null, "code")
+mapper의 resultType, parameterType, namespace등이 불일치한 경우 발생
+
