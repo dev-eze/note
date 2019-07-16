@@ -1,0 +1,2 @@
+if(value == "" || value == null || value == undefined)에서
+== null, == undefined는 !value로 묶을수 있다.
