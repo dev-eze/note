@@ -1,0 +1,3 @@
+#string parameter is not present
+@RequestParam이나 @PathVariable등 파라미터값을 받을 때 Null이거나, Type이 맞지 않은 경우 발생
+보통 required속성의 default=true인데, false를 사용하면 해당 파라미터를 반드시 받지 않아도 된다는 의미이다.
