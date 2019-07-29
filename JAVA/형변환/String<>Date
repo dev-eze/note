@@ -1,0 +1,21 @@
+String to Date
+
+String from = "2019-07-29 14:41:29";
+
+SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+Date to = transFormat.parse(from);
+
+
+
+
+
+
+
+Date to String
+
+Date from = new Date();
+
+SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+String to = transFormat.format(from);
