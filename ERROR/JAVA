@@ -10,3 +10,6 @@ This inspection searches for redundant class fields that can be replaced with lo
 @RequestParam(value="name", required=false) String name
 required 속성의 default 값은 true 
 false값으로 사용하게 되면 해당 Parameter를 반드시 받지 않아도 됨.
+
+call to toString is redundant
+toString의 호출은 중복됩니다.
