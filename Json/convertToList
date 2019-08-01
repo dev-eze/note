@@ -1,0 +1,21 @@
+    public static List<String> convertToList(String jsonStr) {
+        List<String> strings = new ArrayList<>();
+
+        if (StringUtils.isNotBlank(jsonStr)) {
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = (JsonObject)jsonParser.parse(jsonStr);
+            JsonArray jsonArray = jsonObject.getAsJsonArray("arrayValue");
+
+            for (JsonElement each : jsonArray) {
+                JsonArray jsonElements = each.getAsJsonArray();
+
+                for (int i=0; i<jsonElements.size(); i++) {
+                    strings.add(jsonElements.get(i).toString());
+                }
+            }
+
+
+        }
+
+        return strings;
+    }
