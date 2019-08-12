@@ -1,0 +1,31 @@
+    public static List<GridElement> convertToList(String jsonStr) {
+        List<GridElement> gridElements = new ArrayList<>();
+
+        if (StringUtils.isNotBlank(jsonStr)) {
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = (JsonObject)jsonParser.parse(jsonStr);
+            JsonArray jsonArray = jsonObject.getAsJsonArray("arrayValue");
+
+
+            for (JsonElement each : jsonArray) {
+                JsonArray jsonElements = each.getAsJsonArray();
+
+                for (int i=0; i<jsonElements.size()-2; i++) {
+                    GridElement gridElement = new GridElement();
+                    gridElement.setCol1(CommonUtil.isNull(jsonElements.get(i))? "" : StringUtil.escape(jsonElements.get(i).toString()));
+                    gridElement.setCol2(CommonUtil.isNull(jsonElements.get(i+1))? "" : StringUtil.escape(jsonElements.get(i+1).toString()));
+                    gridElement.setCol3(CommonUtil.isNull(jsonElements.get(i+2))? "" : StringUtil.escape(jsonElements.get(i+2).toString()));
+
+                    gridElements.add(gridElement);
+                    log.info("grid:{}",gridElements);
+                }
+            }
+            GridElement colId = new GridElement();
+            colId.setCol1("구분");
+            colId.setCol2("값");
+            colId.setCol3("값");
+            gridElements.add(0, colId);
+        }
+
+        return gridElements;
+    }
