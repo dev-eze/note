@@ -1,0 +1,8 @@
+  public String getPostCode() {
+    Integer startIndex = location.indexOf("[");
+    Integer endIndex = location.indexOf("]");
+    if (startIndex == null || endIndex == null || StringUtils.isBlank(location)) {
+      return null;
+    }
+    return headOfficeLocation1.substring(startIndex, endIndex+1);
+  }
